@@ -666,7 +666,7 @@ PrefabInstance:
     - target: {fileID: 7263507569157431542, guid: 4e0caf5e67cce492e80f8aa00813f309,
         type: 3}
       propertyPath: m_linkState
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7263507569157431542, guid: 4e0caf5e67cce492e80f8aa00813f309,
         type: 3}
