@@ -222,10 +222,14 @@ public class InputManager : MonoBehaviour
 
 	private void OnApplicationFocus(bool hasFocus)
 	{
-		SetCursorState(cursorLocked);
+		/*NOTE
+		On the start the cursor is enable, no crosshair
+		Once the player starts the game, the cursor gets locked and the crosshair shows up
+		*/ 
+		//SetCursorState(cursorLocked); //TODO Possible bug with the Diegetic GUI
 	}
 
-	private void SetCursorState(bool newState)
+	public void SetCursorState(bool newState) //Expose this to be called on the player manager
 	{
 		Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 	}

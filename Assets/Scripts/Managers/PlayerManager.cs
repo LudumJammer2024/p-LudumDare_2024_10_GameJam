@@ -15,6 +15,7 @@ public class PlayerManager : Singleton<PlayerManager>
     [SerializeField] private GameObject playerPrefab;
     [Tooltip("HUD prefab. Instantiated at scene load.")]
     [SerializeField] private GameObject HUDPrefab;
+    private GameObject m_HUD;
     /*
     [Tooltip("Pause menu prefab. Instantiated at scene load.")]
     [SerializeField] private GameObject PauseMenuPrefab;
@@ -24,9 +25,17 @@ public class PlayerManager : Singleton<PlayerManager>
 
     [Header("Setable fields and states")]
     public bool isAlive = true;
-    public bool controlEnabled = true;
+
+    /*NOTE
+    On the start the cursor is enable, no crosshair
+    Once the player starts the game, the cursor gets locked and the crosshair shows up
+    */
+
+    public bool controlEnabled = false; //TODO true
     public float volume = 1.0f;
     public float sensitivity = 1.0f;
+
+    public bool ControlEnable { set => controlEnabled = value; }
 
     void Awake()
     {
@@ -49,7 +58,7 @@ public class PlayerManager : Singleton<PlayerManager>
         }
         else
         {
-            Instantiate(HUDPrefab);
+            m_HUD = Instantiate(HUDPrefab);
         }
 
         /*
@@ -73,6 +82,12 @@ public class PlayerManager : Singleton<PlayerManager>
             volume = PlayerPrefs.GetFloat("Volume");
         }
         */
+
+    }
+    private void Start()
+    {
+        if (m_HUD)
+            m_HUD.SetActive(false); // The HUD will get activated once the gun is Equiped
     }
 
     void Update()
@@ -84,8 +99,12 @@ public class PlayerManager : Singleton<PlayerManager>
         }
     }
 
-    public void EquipGun()
+    public void EquipGun() //Call this with the Start button to get the gun
     {
         OnPlayerGunEquip.Invoke();
+        m_HUD.SetActive(true);
+        Debug.Log(PlayerRootGameObject);
+        InputManager input = PlayerRootGameObject.GetComponentInChildren<InputManager>();
+        input.SetCursorState(true);
     }
 }
