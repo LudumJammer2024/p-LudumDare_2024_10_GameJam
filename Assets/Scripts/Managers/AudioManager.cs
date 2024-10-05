@@ -46,6 +46,7 @@ public class AudioManager : Singleton<AudioManager>
     // For smaller sounds like footsteps etc just use this
     public void PlayOneShot(AudioClip clip, float volume = 1f)
     {
+        if (clip == null) return;
         oneShotAudioSource.PlayOneShot(clip, volume);
     }
 

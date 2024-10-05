@@ -25,6 +25,7 @@ public class SoundController : MonoBehaviour
 
     public void PlayOneShot(AudioClip clip, float volume = 1f)
     {
+        if (audioClip == null) return;
         audioSource.PlayOneShot(clip, volume);
     }
 
