@@ -22,4 +22,18 @@ public class SoundController : MonoBehaviour
         playbackTime = 0;
         audioSource.Play();
     }
+
+    public void PlayOneShot(AudioClip clip, float volume = 1f)
+    {
+        audioSource.PlayOneShot(clip, volume);
+    }
+
+    // Overloaded, plays a random sound from an array
+    public void PlayOneShot(AudioClip[] clips, float volume = 1f)
+    {
+        if (clips.Length == 0) return;
+
+        int index = Random.Range(0, clips.Length);
+        audioSource.PlayOneShot(clips[index], volume);
+    }
 }

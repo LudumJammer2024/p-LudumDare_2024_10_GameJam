@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +8,14 @@ public class PlayerManager : Singleton<PlayerManager>
     // Reference to the player
     public GameObject PlayerRootGameObject { get; private set; }
     public GameObject PlayerCapsuleGameObject;
+    public static event Action OnPlayerGunEquip;
 
     [Header("Spawning")]
     [Tooltip("Player prefab. Spawns the player at the spawnPoint.")]
     [SerializeField] private GameObject playerPrefab;
-    /*
     [Tooltip("HUD prefab. Instantiated at scene load.")]
     [SerializeField] private GameObject HUDPrefab;
+    /*
     [Tooltip("Pause menu prefab. Instantiated at scene load.")]
     [SerializeField] private GameObject PauseMenuPrefab;
     */
@@ -41,7 +43,6 @@ public class PlayerManager : Singleton<PlayerManager>
         {
             PlayerRootGameObject = Instantiate(playerPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
         }
-        /*
         if (HUDPrefab == null)
         {
             Debug.LogError("No HUD Prefab selected.");
@@ -51,6 +52,7 @@ public class PlayerManager : Singleton<PlayerManager>
             Instantiate(HUDPrefab);
         }
 
+        /*
         if (PauseMenuPrefab == null)
         {
             Debug.LogError("No pause menu prefab selected.");
@@ -80,5 +82,10 @@ public class PlayerManager : Singleton<PlayerManager>
             if (HUDManager.Instance != null) HUDManager.Instance.PlayerDeathScreen = true;
             controlEnabled = false;
         }
+    }
+
+    public void EquipGun()
+    {
+        OnPlayerGunEquip.Invoke();
     }
 }
