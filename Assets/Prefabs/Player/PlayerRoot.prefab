@@ -1194,4 +1194,21 @@ MonoBehaviour:
   laserDisplayTime: 0.05
   recoilDistance: 0.1
   recoilSpeed: 0.1
+  randomRecoilRotation: {x: -4, y: 3}
   reloadTime: 1
+  shootingSounds:
+  - {fileID: 8300000, guid: 737d2e90844a2554dae1d2a7b89cb625, type: 3}
+  - {fileID: 8300000, guid: fbf96eac213968047838548a3c7526b4, type: 3}
+  - {fileID: 8300000, guid: 548833aa8224e364f82f0cd77c0b6ff4, type: 3}
+  - {fileID: 8300000, guid: c60ec88dbfbd9084d86936201f70ad2d, type: 3}
+  - {fileID: 8300000, guid: 20db6303d34c65649b9fc0d91c6f2b99, type: 3}
+  - {fileID: 8300000, guid: c5d2d410252f8e745adb7f30f12a64d9, type: 3}
+  reloadingSounds:
+  - {fileID: 8300000, guid: 570aa58b2156ce14fb9a80c5030e4a97, type: 3}
+  - {fileID: 8300000, guid: a09c7d61a7fcfa346a7976375f34fb13, type: 3}
+  - {fileID: 8300000, guid: 2f78e0438ff426842b4e4370b525f7c9, type: 3}
+  equipSounds:
+  - {fileID: 8300000, guid: f5246ddc685ed72498a3d8470cd53531, type: 3}
+  shootingVolume: 1
+  reloadingVolume: 1
+  equipVolume: 1
