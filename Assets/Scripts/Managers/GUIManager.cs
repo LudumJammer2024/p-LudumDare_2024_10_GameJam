@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GUIManager : Singleton<GUIManager>
@@ -13,5 +11,11 @@ public class GUIManager : Singleton<GUIManager>
             Canvas c = m_diegeticGUIs[i].GetComponent<Canvas>();
             c.worldCamera = Camera.main;
         }
+    }
+
+    public void ShowRadar()
+    {
+        m_diegeticGUIs[0].gameObject.SetActive(false);
+        m_diegeticGUIs[1].gameObject.SetActive(true);
     }
 }
