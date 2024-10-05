@@ -55,7 +55,8 @@ public class InputManager : MonoBehaviour
 	{
 		if (cursorInputForLook)
 		{
-			LookInput(canControl ? value.ReadValue<Vector2>() : Vector2.zero);
+			// We can always look even if we can't control
+			LookInput(value.ReadValue<Vector2>());
 		}
 	}
 
@@ -102,16 +103,6 @@ public class InputManager : MonoBehaviour
 	public void OnInteract(InputAction.CallbackContext value)
 	{
 		InteractInput(canControl && value.action.triggered);
-	}
-
-	public void OnGrab(InputAction.CallbackContext value)
-	{
-		GrabInput(canControl && value.action.triggered);
-	}
-
-	public void OnDeselect(InputAction.CallbackContext value)
-	{
-		DeselectInput(canControl && value.action.triggered);
 	}
 
 	public void OnReloadScene(InputAction.CallbackContext value)
@@ -169,15 +160,6 @@ public class InputManager : MonoBehaviour
 	{
 		return interact;
 	}
-	public bool IsGrabbing()
-	{
-		return grab;
-	}
-
-	public bool IsDeselecting()
-	{
-		return deselect;
-	}
 
 	public bool IsReloadingScene()
 	{
@@ -226,16 +208,6 @@ public class InputManager : MonoBehaviour
 	public void InteractInput(bool newInteractState)
 	{
 		interact = newInteractState;
-	}
-
-	public void GrabInput(bool newGrabState)
-	{
-		grab = newGrabState;
-	}
-
-	public void DeselectInput(bool newDeselectState)
-	{
-		deselect = newDeselectState;
 	}
 
 	public void ReloadSceneInput(bool newSceneReloadState)
