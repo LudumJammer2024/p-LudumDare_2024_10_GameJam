@@ -1890,7 +1890,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1882914560}
   isAlive: 1
   controlEnabled: 0
-  lookEnabled: 0
+  lookEnabled: 1
   volume: 1
   sensitivity: 1
 --- !u!1 &832575517
