@@ -16,10 +16,8 @@ public class PlayerManager : Singleton<PlayerManager>
     [Tooltip("HUD prefab. Instantiated at scene load.")]
     [SerializeField] private GameObject HUDPrefab;
     private GameObject m_HUD;
-    /*
     [Tooltip("Pause menu prefab. Instantiated at scene load.")]
     [SerializeField] private GameObject PauseMenuPrefab;
-    */
     [Tooltip("Game object where the player is instantiated.")]
     [SerializeField] private GameObject spawnPoint;
 
@@ -32,6 +30,7 @@ public class PlayerManager : Singleton<PlayerManager>
     */
 
     public bool controlEnabled = false; //TODO true
+    public bool lookEnabled = true;
     public float volume = 1.0f;
     public float sensitivity = 1.0f;
 
@@ -54,17 +53,16 @@ public class PlayerManager : Singleton<PlayerManager>
         }
         if (HUDPrefab == null)
         {
-            Debug.LogError("No HUD Prefab selected.");
+            Debug.LogError("No HUD Prefab selected. HUD is disabled.");
         }
         else
         {
             m_HUD = Instantiate(HUDPrefab);
         }
 
-        /*
         if (PauseMenuPrefab == null)
         {
-            Debug.LogError("No pause menu prefab selected.");
+            Debug.LogError("No pause menu prefab selected. Pausing is disabled.");
         }
         else
         {
@@ -81,7 +79,6 @@ public class PlayerManager : Singleton<PlayerManager>
         {
             volume = PlayerPrefs.GetFloat("Volume");
         }
-        */
 
     }
     private void OnEnable() 

@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 // already taken by the built-in Unity SceneManager
 public class SceneManagerSingleton : Singleton<SceneManagerSingleton>
 {
+    public enum TimeState { Running, Paused }
+    public TimeState CurrentTimeState { get; private set; } = TimeState.Running;
 
     void OnEnable()
     {
@@ -51,14 +53,43 @@ public class SceneManagerSingleton : Singleton<SceneManagerSingleton>
         Time.timeScale = 1.0f;
     }
 
-    /*
     public void PauseGame()
     {
+        ChangeTimeState(TimeState.Paused);
     }
 
     public void UnpauseGame()
     {
         PlayerPrefs.Save();
+        ChangeTimeState(TimeState.Running);
     }
-    */
+
+    private void ChangeTimeState(TimeState newTimeState)
+    {
+        if (newTimeState == CurrentTimeState) return;
+
+        switch (newTimeState)
+        {
+            case TimeState.Paused:
+                Time.timeScale = 0;
+                if (PlayerManager.Instance != null)
+                {
+                    PlayerManager.Instance.controlEnabled = false;
+                    PlayerManager.Instance.lookEnabled = false;
+                }
+                Cursor.lockState = CursorLockMode.None;
+                break;
+            default:
+                Time.timeScale = 1.0f;
+                if (PlayerManager.Instance != null)
+                {
+                    PlayerManager.Instance.controlEnabled = true;
+                    PlayerManager.Instance.lookEnabled = true;
+                }
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
+        }
+
+        CurrentTimeState = newTimeState;
+    }
 }
