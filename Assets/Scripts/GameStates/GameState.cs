@@ -12,21 +12,46 @@ public class GameState : ScriptableObject
         WIN,
         LOSE
     }
-    public States Current = States.IDLE;
+    public States Current;
+    private int m_nodesInGame;
     public bool hasWin => Current == States.WIN;
     public bool hasLose => Current == States.LOSE;
     //Events
     public delegate void ChangeGameStateHandler(States state);
     public static event ChangeGameStateHandler OnGameStateChange;  // Subscribe to this event if you want to do something when the game state changes
     // Main variables
-    public List<NodeController> disableNodes = new List<NodeController>();
-    public List<NodeController> activeNodes = new List<NodeController>();
-    public NodeController currentNode = null;
+    public List<NodeController> disableNodes;
+    public List<NodeController> activeNodes;
+    private NodeController m_currentNode = null;
     //Game loop
-    public void ActivateNode(NodeController currentNode)
+    public void Init(int nodesInGame) // The GameInstance will pass how many nodes are in the level
     {
-        disableNodes.Remove(currentNode);
-        activeNodes.Add(currentNode);
+        m_nodesInGame = nodesInGame;
+        Current = States.IDLE;
+        disableNodes = new List<NodeController>();
+        activeNodes = new List<NodeController>();
+        Debug.Log("The Game State has been reset");
+    }
+
+    public void AddToDisableNodes(NodeController node)
+    {
+        disableNodes.Add(node);
+        // If we get all the nodes, we trigger one of them as Under Attack!
+        if (disableNodes.Count == m_nodesInGame)
+        {
+            m_currentNode = disableNodes[0];
+            m_currentNode.SetUnderAttack();
+        }
+
+
+
+    }
+
+    public void ActivateNode(NodeController node)
+    {
+        Debug.Log("Activating..." + node.gameObject.name);
+        disableNodes.Remove(node);
+        activeNodes.Add(node);
         NextNode();
     }
     public void NodeDestroyed()
@@ -35,14 +60,18 @@ public class GameState : ScriptableObject
     }
     private void NextNode()
     {
-        if (disableNodes.Count == 0) WinGame();
-        int randomNodeIndex = Random.Range(0, disableNodes.Count - 1);
-        currentNode = disableNodes[randomNodeIndex];
-
-        // Logic done on the node
-        currentNode.SetUnderAttack();
-
-        // Display it on the minimap, etc
+        if (disableNodes.Count == 0)
+        {
+            WinGame();
+        }
+        else
+        {
+            int randomNodeIndex = Random.Range(0, disableNodes.Count - 1);
+            m_currentNode = disableNodes[randomNodeIndex];
+            // Logic done on the node
+            m_currentNode.SetUnderAttack();
+            // Display it on the minimap, etc
+        }
     }
 
     //Events
