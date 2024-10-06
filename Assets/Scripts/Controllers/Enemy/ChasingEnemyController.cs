@@ -3,10 +3,12 @@ using UnityEngine.AI;
 
 //[RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(NavMeshAgent))]
-public class GroundEnemyMovement : MonoBehaviour
+[RequireComponent(typeof(SphereCollider))]
+public class ChasingEnemyController : MonoBehaviour
 {
     private Vector3 velocity = Vector3.forward;
     private CharacterController m_characterController;
+    [SerializeField] private SphereCollider m_sphereCollider;
     [SerializeField] private float m_MAX_SPEED = 10.0f;
     [SerializeField] private float m_fieldOfView = 0.0f;
     [SerializeField] private float m_fieldOfHearing = 0.0f;
@@ -15,7 +17,8 @@ public class GroundEnemyMovement : MonoBehaviour
     [SerializeField] private float m_maxChasingDistance = 0.0f;
     [SerializeField] private NavMeshAgent agent;
     private Vector3 patrolPosition;
-    [SerializeField] private Transform target;
+    //[SerializeField] 
+    private Transform target;
     private bool m_chase = false;
 
     private void Awake()
@@ -27,14 +30,20 @@ public class GroundEnemyMovement : MonoBehaviour
         if (m_maxChasingDistance == 0.0f || m_maxChasingDistance < m_fieldOfView) m_maxChasingDistance = m_fieldOfView * 1.5f;
 
         m_characterController = GetComponent<CharacterController>();
+        m_sphereCollider = GetComponent<SphereCollider>();
         agent = GetComponent<NavMeshAgent>();
+
         patrolPosition = transform.position;
         agent.destination = patrolPosition;
         agent.acceleration = m_MAX_SPEED;
+
+        m_sphereCollider.isTrigger = true; //This is a trigger that checks for a player
+        m_sphereCollider.radius = m_fieldOfView * 2;
     }
 
     private void Update()
     {
+        if(!target) return;
         FieldOfViewVectorVisualizer(); //Comment this on final realease
         FieldOfHearing();
         FieldOfView();
@@ -118,5 +127,14 @@ public class GroundEnemyMovement : MonoBehaviour
         Debug.DrawLine(transform.position, transform.position + l * m_fieldOfView, Color.yellow);
 
         Debug.DrawLine(target.position, target.position + target.forward * m_fieldOfView, Color.yellow);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Player within range");
+            target = other.gameObject.transform;
+        }
     }
 }

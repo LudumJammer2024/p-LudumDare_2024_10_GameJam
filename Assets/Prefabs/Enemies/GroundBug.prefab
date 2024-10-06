@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 9150971222957518348}
   - component: {fileID: 8632000127273631334}
   - component: {fileID: 3390600455444536005}
+  - component: {fileID: 7296272056347821071}
   m_Layer: 0
   m_Name: GroundBug
   m_TagString: Untagged
@@ -295,12 +296,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3657fe52e1a242d490011a4bac63a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_sphereCollider: {fileID: 0}
   m_MAX_SPEED: 8
-  m_fieldOfView: 15
+  m_fieldOfView: 10
   m_fieldOfHearing: 5
   m_angleOfViewBothSides: 45
+  m_maxChasingDistance: 0
   agent: {fileID: 0}
-  target: {fileID: 0}
 --- !u!143 &8632000127273631334
 CharacterController:
   m_ObjectHideFlags: 0
@@ -349,3 +351,24 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!135 &7296272056347821071
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66466452240897891}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
