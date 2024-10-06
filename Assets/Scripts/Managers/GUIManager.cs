@@ -12,10 +12,27 @@ public class GUIManager : Singleton<GUIManager>
             c.worldCamera = Camera.main;
         }
     }
+    
+    private void GameStateChangedGUIHandler(GameState.States state)
+    {
+        if(state == GameState.States.STARTED)
+        {
+           ShowRadar(); 
+        }
+
+    }
 
     public void ShowRadar()
     {
         m_diegeticGUIs[0].gameObject.SetActive(false);
         m_diegeticGUIs[1].gameObject.SetActive(true);
+    }
+     private void OnEnable()
+    {
+        GameState.OnGameStateChange += GameStateChangedGUIHandler;
+    }
+    private void OnDisable()
+    {
+        GameState.OnGameStateChange -= GameStateChangedGUIHandler;
     }
 }
