@@ -122,7 +122,7 @@ public class PlayerManager : Singleton<PlayerManager>
         OnPlayerGunEquip.Invoke();
         ControlEnable = true;
         m_HUD.SetActive(true);
-        Debug.Log(PlayerRootGameObject);
+        //Debug.Log(PlayerRootGameObject);
         InputManager input = PlayerRootGameObject.GetComponentInChildren<InputManager>();
         input.SetCursorState(true);
     }

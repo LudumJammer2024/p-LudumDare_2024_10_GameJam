@@ -53,7 +53,7 @@ public class TeleportationController : MonoBehaviour
         {
             m_counter = 0.0f;
             m_isPlayerPresent = false;
-            OnTeleport.Invoke(m_playerGO.transform);
+            OnTeleport?.Invoke(m_playerGO.transform);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -62,6 +62,7 @@ public class TeleportationController : MonoBehaviour
         {
             m_playerGO = other.gameObject;
             m_isPlayerPresent = true;
+            Debug.Log("Player on teleport: " + m_playerGO.name);
         }
     }
     private void OnTriggerExit(Collider other)

@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1ec71b27f65420988678b1729cdf5f, type: 3}
   m_Name: GameState
   m_EditorClassIdentifier: 
-  current: 2
-  m_win: 0
-  m_lose: 0
-  m_hasStarted: 0
-  disableNodes: []
+  Current: 1
+  disableNodes:
+  - {fileID: 0}
   activeNodes: []
+  currentNode: {fileID: 0}

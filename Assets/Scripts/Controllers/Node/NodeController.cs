@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 public class NodeController : MonoBehaviour
 {
+    [SerializeField] private GameState m_gameState;
     public enum NodeState
     {
         Idle,
@@ -28,7 +29,19 @@ public class NodeController : MonoBehaviour
 
     void Awake()
     {
+
         SetState(NodeState.Idle);
+
+    }
+    private void Start()
+    {
+        if (!m_gameState)
+            throw new System.NullReferenceException("The GameState is missing");
+
+        //Debug.Log(this.GetType());
+        // Adds itself to the disableNodes List on the GameState (Yields type missmatch)
+        m_gameState.AddToDisableNodes(this);
+
     }
 
     void Update()
@@ -84,6 +97,7 @@ public class NodeController : MonoBehaviour
                 break;
             case NodeState.Active:
                 onActive?.Invoke();
+                m_gameState.ActivateNode(this);
                 break;
         }
     }
