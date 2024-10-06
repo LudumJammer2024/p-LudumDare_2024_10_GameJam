@@ -30,7 +30,7 @@ public class PlayerManager : Singleton<PlayerManager>
     */
 
     public bool controlEnabled = false; //TODO true
-    public bool lookEnabled = false;
+    public bool lookEnabled = true;
     public float volume = 1.0f;
     public float sensitivity = 1.0f;
 
@@ -81,11 +81,11 @@ public class PlayerManager : Singleton<PlayerManager>
         }
 
     }
-    private void OnEnable() 
+    private void OnEnable()
     {
         GameState.OnGameStateChange += OnGameStateChange;
     }
-    private void OnDisable() 
+    private void OnDisable()
     {
         GameState.OnGameStateChange -= OnGameStateChange;
     }
@@ -97,6 +97,13 @@ public class PlayerManager : Singleton<PlayerManager>
 
     void Update()
     {
+        if (!controlEnabled && Cursor.lockState == CursorLockMode.Locked) Cursor.lockState = CursorLockMode.None;
+
+        if (PlayerPrefs.HasKey("Volume"))
+        {
+            AudioListener.volume = volume = PlayerPrefs.GetFloat("Volume");
+        }
+
         if (!isAlive)
         {
             if (HUDManager.Instance != null) HUDManager.Instance.PlayerDeathScreen = true;
@@ -105,7 +112,7 @@ public class PlayerManager : Singleton<PlayerManager>
     }
     void OnGameStateChange(GameState.States gameState)
     {
-        if(gameState == GameState.States.STARTED)
+        if (gameState == GameState.States.STARTED)
         {
             EquipGun();
         }
