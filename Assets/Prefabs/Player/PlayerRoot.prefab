@@ -741,8 +741,8 @@ GameObject:
   - component: {fileID: 7579471714239790736}
   - component: {fileID: 993541338450063595}
   - component: {fileID: 9143477954622353737}
-  - component: {fileID: 2394504762442693712}
   - component: {fileID: 725977856606440380}
+  - component: {fileID: 8715538560533951851}
   m_Layer: 3
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -1032,6 +1032,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6f4a3835-a462-4228-91ea-8ccf17c974ac
     m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6674d1fc-8758-4e71-b34b-affe98b48f11
+    m_ActionName: UI/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: KeyboardMouse
   m_DefaultActionMap: Player
@@ -1161,18 +1165,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2394504762442693712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7965885535006394065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f31fc4042ce6384f9fe2d407bc648f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &725977856606440380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,3 +1204,15 @@ MonoBehaviour:
   shootingVolume: 1
   reloadingVolume: 1
   equipVolume: 1
+--- !u!114 &8715538560533951851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7965885535006394065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44668be8931d9c64e881148d24b44224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

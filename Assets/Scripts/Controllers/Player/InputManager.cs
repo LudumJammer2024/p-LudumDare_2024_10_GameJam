@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
 	private bool canControl = true;
+	private bool canLook = true;
 
 	[Header("Character Input Values")]
 	[SerializeField]
@@ -27,8 +28,6 @@ public class InputManager : MonoBehaviour
 	private bool interact;
 	[SerializeField]
 	private bool grab;
-	[SerializeField]
-	private bool reloadScene = false;
 	[SerializeField]
 	private bool pause = false;
 
@@ -56,7 +55,7 @@ public class InputManager : MonoBehaviour
 		if (cursorInputForLook)
 		{
 			// We can always look even if we can't control
-			LookInput(value.ReadValue<Vector2>());
+			LookInput(canLook ? value.ReadValue<Vector2>() : Vector2.zero);
 		}
 	}
 
@@ -103,12 +102,6 @@ public class InputManager : MonoBehaviour
 	public void OnInteract(InputAction.CallbackContext value)
 	{
 		InteractInput(canControl && value.action.triggered);
-	}
-
-	public void OnReloadScene(InputAction.CallbackContext value)
-	{
-		// Always reload scene even if we can't control
-		ReloadSceneInput(value.action.triggered);
 	}
 
 	public void OnPause(InputAction.CallbackContext value)
@@ -160,11 +153,6 @@ public class InputManager : MonoBehaviour
 	{
 		return interact;
 	}
-
-	public bool IsReloadingScene()
-	{
-		return reloadScene;
-	}
 	public bool IsPausing()
 	{
 		return pause;
@@ -210,11 +198,6 @@ public class InputManager : MonoBehaviour
 		interact = newInteractState;
 	}
 
-	public void ReloadSceneInput(bool newSceneReloadState)
-	{
-		reloadScene = newSceneReloadState;
-	}
-
 	public void PauseInput(bool newPauseState)
 	{
 		pause = newPauseState;
@@ -225,7 +208,7 @@ public class InputManager : MonoBehaviour
 		/*NOTE
 		On the start the cursor is enable, no crosshair
 		Once the player starts the game, the cursor gets locked and the crosshair shows up
-		*/ 
+		*/
 		//SetCursorState(cursorLocked); //TODO Possible bug with the Diegetic GUI
 	}
 
@@ -236,6 +219,10 @@ public class InputManager : MonoBehaviour
 
 	void Update()
 	{
-		if (PlayerManager.Instance != null) canControl = PlayerManager.Instance.controlEnabled;
+		if (PlayerManager.Instance != null)
+		{
+			canControl = PlayerManager.Instance.controlEnabled;
+			canLook = PlayerManager.Instance.lookEnabled;
+		}
 	}
 }
