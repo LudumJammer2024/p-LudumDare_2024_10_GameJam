@@ -15,8 +15,15 @@ public class HUDCallOfDutyFX : MonoBehaviour
     private void Update()
     {
         //Debug.Log(m_playerState.Health);
-        float alpha = 1 - m_playerState.Health / m_playerState.MaxHealth;
-        m_redOverlayOfDeath.color = new Color(1, 1, 1, alpha );
+        float alpha;
+        // Wait at least 80% of the health to start showing the red overlay
+        if (m_playerState.Health > m_playerState.MaxHealth * 0.8)
+            alpha = 0;
+        else
+            alpha = 1 - m_playerState.Health / m_playerState.MaxHealth;
+
+
+        m_redOverlayOfDeath.color = new Color(1, 1, 1, alpha);
 
     }
 }
