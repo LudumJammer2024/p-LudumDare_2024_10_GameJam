@@ -38,7 +38,7 @@ public class ChasingEnemyController : MonoBehaviour
         agent.acceleration = m_MAX_SPEED;
 
         m_sphereCollider.isTrigger = true; //This is a trigger that checks for a player
-        m_sphereCollider.radius = m_fieldOfView * 2;
+        m_sphereCollider.radius = m_fieldOfView;
     }
 
     private void Update()
