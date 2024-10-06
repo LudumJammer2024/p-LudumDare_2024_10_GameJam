@@ -133,7 +133,6 @@ public class ChasingEnemyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player within range");
             target = other.gameObject.transform;
         }
     }
