@@ -35,12 +35,11 @@ public class GameState : ScriptableObject
     public void AddToDisableNodes(NodeController node)
     {
         disableNodes.Add(node);
-        // If we get all the nodes, we trigger one of them as Under Attack!
+        // If we get all the nodes, we pick one of them as currentNode, the StartGame will set it Under Attack!
         if (disableNodes.Count == m_nodesInGame)
         {
             int randomNodeIndex = Random.Range(0, disableNodes.Count - 1);
             m_currentNode = disableNodes[randomNodeIndex];
-            m_currentNode.SetUnderAttack();
         }
 
     }
@@ -76,6 +75,7 @@ public class GameState : ScriptableObject
     public void StartGame()
     {
         Current = States.STARTED;
+        m_currentNode.SetUnderAttack();
         OnGameStateChange?.Invoke(Current);
     }
     public void LoseGame()

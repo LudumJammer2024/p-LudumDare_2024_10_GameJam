@@ -78,10 +78,11 @@ public class NodeRayController : MonoBehaviour
 
     public void UnderAttackAlertRay()
     {
+        m_lineRenderer = GetComponent<LineRenderer>();
         if (!m_lineRenderer) return;
         Vector3[] rayPositions = new Vector3[2];
         rayPositions[0] = transform.position;
-        rayPositions[1] = transform.up * 1000f;
+        rayPositions[1] = transform.position + transform.up * 100f;
         m_lineRenderer.SetPositions(rayPositions);
         m_lineRenderer.startColor = Color.red;
         m_lineRenderer.endColor = Color.white;
