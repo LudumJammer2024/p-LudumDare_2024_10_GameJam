@@ -91,10 +91,11 @@ public class PlayerShooting : MonoBehaviour
         if (inputManager.IsAttackingOne() && currentMagazine > 0)
         {
             StartCoroutine(ShootLaser());
-
+            if (HUDManager.Instance) HUDManager.Instance.UpdateCrosshair();
             if (AudioManager.Instance) AudioManager.Instance.PlayOneShot(shootingSounds, shootingVolume);
 
             currentMagazine--;
+            if (HUDManager.Instance) HUDManager.Instance.Ammo = currentMagazine;
             StartCoroutine(RecoilEffect());
 
             // Enforce fire rate limit
@@ -222,6 +223,7 @@ public class PlayerShooting : MonoBehaviour
         }
 
         currentMagazine = maxMagazine;
+        if (HUDManager.Instance) HUDManager.Instance.Ammo = currentMagazine;
         isReloading = false;
         canShoot = true;
     }
