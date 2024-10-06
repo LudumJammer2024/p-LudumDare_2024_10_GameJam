@@ -7,4 +7,4 @@
 - [x] GameState as Scriptable Object with Win and Lose states.
 - [x] Include NodeController references on GameState to keep track of Node connections
 - [x] Implement chasing behaviour of Ground Enemy, field of view and hearing, and max chasing distance
-- [ ] Setting screen as an overlay
+- [x] Setting screen as an overlay
