@@ -49,7 +49,7 @@ public class SceneManagerSingleton : Singleton<SceneManagerSingleton>
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded: " + scene.name);
+        //Debug.Log("OnSceneLoaded: " + scene.name);
         Time.timeScale = 1.0f;
     }
 
