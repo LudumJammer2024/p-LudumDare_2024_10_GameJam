@@ -1349,16 +1349,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Node
       objectReference: {fileID: 0}
-    - target: {fileID: 7832939903418863508, guid: 77af53585b8f24d4393f960669b20e8e,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7832939903418863508, guid: 77af53585b8f24d4393f960669b20e8e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8003476146779664298, guid: 77af53585b8f24d4393f960669b20e8e,
         type: 3}
       propertyPath: m_linkRayDestination
