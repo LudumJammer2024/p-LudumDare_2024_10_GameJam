@@ -296,12 +296,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3657fe52e1a242d490011a4bac63a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerState: {fileID: 11400000, guid: f02db333380094716aa82f0095c86228, type: 2}
   m_sphereCollider: {fileID: 0}
   m_MAX_SPEED: 8
   m_fieldOfView: 10
   m_fieldOfHearing: 5
   m_angleOfViewBothSides: 45
   m_maxChasingDistance: 0
+  m_damageDealingDistance: 5
   agent: {fileID: 0}
 --- !u!143 &8632000127273631334
 CharacterController:

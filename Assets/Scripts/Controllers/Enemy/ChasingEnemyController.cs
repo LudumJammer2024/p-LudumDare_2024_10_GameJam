@@ -6,8 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(SphereCollider))]
 public class ChasingEnemyController : MonoBehaviour
 {
-    private Vector3 velocity = Vector3.forward;
-    private CharacterController m_characterController;
+    [SerializeField] private PlayerState m_playerState;
     [SerializeField] private SphereCollider m_sphereCollider;
     [SerializeField] private float m_MAX_SPEED = 10.0f;
     [SerializeField] private float m_fieldOfView = 0.0f;
@@ -15,6 +14,7 @@ public class ChasingEnemyController : MonoBehaviour
     [SerializeField] private float m_angleOfViewBothSides = 0.0f;
 
     [SerializeField] private float m_maxChasingDistance = 0.0f;
+    [SerializeField] private float m_damageDealingDistance = 5.0f;
     [SerializeField] private NavMeshAgent agent;
     private Vector3 patrolPosition;
     //[SerializeField] 
@@ -23,13 +23,14 @@ public class ChasingEnemyController : MonoBehaviour
 
     private void Awake()
     {
+        if (!m_playerState)
+            throw new System.NullReferenceException("The PlayerState is missing in the ChasingEnemyController");
 
         if (m_fieldOfView == 0.0f) m_fieldOfView = 10f;
         if (m_fieldOfHearing == 0.0f) m_fieldOfView = 5f;
         if (m_angleOfViewBothSides == 0.0f) m_fieldOfView = 45f;
         if (m_maxChasingDistance == 0.0f || m_maxChasingDistance < m_fieldOfView) m_maxChasingDistance = m_fieldOfView * 1.5f;
 
-        m_characterController = GetComponent<CharacterController>();
         m_sphereCollider = GetComponent<SphereCollider>();
         agent = GetComponent<NavMeshAgent>();
 
@@ -43,7 +44,7 @@ public class ChasingEnemyController : MonoBehaviour
 
     private void Update()
     {
-        if(!target) return;
+        if (!target) return;
         FieldOfViewVectorVisualizer(); //Comment this on final realease
         FieldOfHearing();
         FieldOfView();
@@ -58,6 +59,7 @@ public class ChasingEnemyController : MonoBehaviour
             if ((target.position - transform.position).magnitude < m_maxChasingDistance)
             {
                 agent.destination = target.position;
+                DealDamage();
             }
             else
             {
@@ -66,6 +68,12 @@ public class ChasingEnemyController : MonoBehaviour
             }
 
         }
+    }
+
+    private void DealDamage()
+    {
+        if ((target.position - transform.position).magnitude < m_damageDealingDistance)
+            m_playerState.DealDamage();//.Health -= (int) 5.0f * Time.deltaTime;
     }
     private void FieldOfView()
     {
