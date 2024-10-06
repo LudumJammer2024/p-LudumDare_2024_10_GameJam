@@ -13,23 +13,8 @@ public class PlayerState : ScriptableObject
     [SerializeField] private float m_recoveryContribution = 10.0f;
     [SerializeField] private bool m_isAlive = true;
     [SerializeField] private float m_recoveryCooldownProgress = 0;
-    public float Health
-    {
-        get => m_health;
-        // set
-        // {
-        //     if (m_health <= 0)
-        //     {
-        //         m_health = 0;
-        //         if (OnPlayerDeath != null)
-        //             OnPlayerDeath?.Invoke();
-        //     }
-        //     else
-        //     {
-        //         m_health = value;
-        //     }
-        // }
-    }
+    public float Health { get => m_health;}
+    public float MaxHealth { get => MAX_HEALTH;}
 
     // Events
 
