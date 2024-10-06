@@ -27,7 +27,7 @@ public class TeleportDestination : MonoBehaviour
     }
     private void TeleportPlayer(Transform playerPosition)
     {
-        playerPosition.position = spawnDestination.position;
+        playerPosition.transform.position = spawnDestination.position;
     }
     private void OnEnable()
     {

@@ -341,7 +341,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1603597361665261151}
-  m_Layer: 0
+  - component: {fileID: 979179203174024611}
+  m_Layer: 6
   m_Name: PlayerRoot
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -366,6 +367,33 @@ Transform:
   - {fileID: 7333920802599525483}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &979179203174024611
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505116169090373434}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2340351755840094090
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2340351755840094093}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: PlayerCameraRoot
   m_TagString: CinemachineTarget
   m_Icon: {fileID: 0}
@@ -629,7 +657,7 @@ GameObject:
   - component: {fileID: 6034982305859244747}
   - component: {fileID: 6034982305859244746}
   - component: {fileID: 6034982305859244741}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -743,7 +771,7 @@ GameObject:
   - component: {fileID: 9143477954622353737}
   - component: {fileID: 725977856606440380}
   - component: {fileID: 8715538560533951851}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: PlayerCapsule
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -805,8 +833,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392ba2bf8ffee474b953c68dc6a73d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 3.5
-  SprintSpeed: 4.5
+  MoveSpeed: 6
+  SprintSpeed: 8
   SpeedChangeRate: 10
   JumpHeight: 1
   Gravity: -16
@@ -856,7 +884,6 @@ MonoBehaviour:
   attackTwoHeld: 0
   interact: 0
   grab: 0
-  reloadScene: 0
   pause: 0
   deselect: 0
   analogMovement: 0
@@ -1000,22 +1027,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 78fe0607-f8e6-4bd2-adaf-b68003ab7f88
     m_ActionName: Player/Interact[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5918536525241146029}
-        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: OnReloadScene
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: d90735fd-1042-470c-9093-53edc15c261b
-    m_ActionName: Player/Reload[/Keyboard/r]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5918536525241146029}
