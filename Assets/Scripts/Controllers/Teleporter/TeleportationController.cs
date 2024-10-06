@@ -22,7 +22,7 @@ public class TeleportationController : MonoBehaviour
 
     [Header("Settings")]
     [Tooltip("Time in seconds")]
-    [SerializeField] private float m_timeToTeleport;
+    [SerializeField] private float m_timeToTeleport = 3.0f;
     [SerializeField] private GameObject m_playerGO; // Reference to the player GO to pass the Transform ref to the event
     [Header("Base Properties")]
     [SerializeField] private MeshRenderer m_baseMeshRenderer;
@@ -63,6 +63,7 @@ public class TeleportationController : MonoBehaviour
             m_playerGO = other.gameObject;
             m_isPlayerPresent = true;
             Debug.Log("Player on teleport: " + m_playerGO.name);
+            if (HUDManager.Instance != null) HUDManager.Instance.DisplayingTeleportPrompt = true;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -71,6 +72,7 @@ public class TeleportationController : MonoBehaviour
         {
             m_isPlayerPresent = false;
             m_playerGO = null;
+            if (HUDManager.Instance != null) HUDManager.Instance.DisplayingTeleportPrompt = false;
         }
     }
 

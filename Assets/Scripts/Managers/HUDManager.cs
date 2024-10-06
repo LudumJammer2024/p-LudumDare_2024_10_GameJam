@@ -8,12 +8,15 @@ public class HUDManager : Singleton<HUDManager>
     public UnityEvent onPlayerDeathScreen;
     public UnityEvent onDisplayTooltip;
     public UnityEvent onNotDisplayTooltip;
+    public UnityEvent onDisplayTeleportPrompt;
+    public UnityEvent onNotDisplayTeleportPrompt;
     public UnityEvent onAmmoUpdate;
     public UnityEvent onShoot;
 
     private bool interactionPromptActive = false;
     private bool playerDeathScreenActive = false;
     private bool displayingTooltip = false;
+    private bool displayingTeleportPrompt = false;
     public int displayedTooltipIndex = 0;
     private int ammoAmount = 10;
 
@@ -49,6 +52,18 @@ public class HUDManager : Singleton<HUDManager>
 
             if (value) onDisplayTooltip.Invoke();
             else onNotDisplayTooltip.Invoke();
+        }
+    }
+
+    public bool DisplayingTeleportPrompt
+    {
+        get => displayingTeleportPrompt;
+        set
+        {
+            displayingTeleportPrompt = value;
+
+            if (value) onDisplayTeleportPrompt.Invoke();
+            else onNotDisplayTeleportPrompt.Invoke();
         }
     }
     

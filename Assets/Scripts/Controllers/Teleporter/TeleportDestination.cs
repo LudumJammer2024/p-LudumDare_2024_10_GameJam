@@ -6,13 +6,17 @@ using UnityEngine;
 /// </summary>
 public class TeleportDestination : Singleton<TeleportDestination>
 {
-    private Transform playerTransform;
-
     private void TeleportPlayer(Transform playerPosition)
     {
-        if (PlayerManager.Instance != null)
+        if (PlayerManager.Instance != null && PlayerManager.Instance.PlayerCapsuleGameObject != null)
         {
-            playerTransform = playerPosition;
+            GameObject playerCapsule = PlayerManager.Instance.PlayerCapsuleGameObject;
+            if (playerCapsule.TryGetComponent<CharacterController>(out CharacterController playerController))
+            {
+                playerController.enabled = false;
+                playerPosition.position = transform.position;
+                playerController.enabled = true;
+            }
         }
     }
     private void OnEnable()
@@ -22,14 +26,5 @@ public class TeleportDestination : Singleton<TeleportDestination>
     private void OnDisable()
     {
         TeleportationController.OnTeleport -= TeleportPlayer;
-    }
-
-    private void LateUpdate()
-    {
-        if (playerTransform != null)
-        {
-            playerTransform.position = transform.position;
-            playerTransform = null;
-        }
     }
 }
