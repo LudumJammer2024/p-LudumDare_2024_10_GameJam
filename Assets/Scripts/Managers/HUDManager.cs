@@ -8,11 +8,14 @@ public class HUDManager : Singleton<HUDManager>
     public UnityEvent onPlayerDeathScreen;
     public UnityEvent onDisplayTooltip;
     public UnityEvent onNotDisplayTooltip;
+    public UnityEvent onAmmoUpdate;
+    public UnityEvent onShoot;
 
     private bool interactionPromptActive = false;
     private bool playerDeathScreenActive = false;
     private bool displayingTooltip = false;
     public int displayedTooltipIndex = 0;
+    private int ammoAmount = 10;
 
     public bool InteractionPrompt
     {
@@ -47,5 +50,19 @@ public class HUDManager : Singleton<HUDManager>
             if (value) onDisplayTooltip.Invoke();
             else onNotDisplayTooltip.Invoke();
         }
+    }
+    
+    public int Ammo
+    {
+        get => ammoAmount;
+        set
+        {
+            ammoAmount = value;
+            onAmmoUpdate?.Invoke();
+        }
+    }
+
+    public void UpdateCrosshair() {
+        onShoot?.Invoke();
     }
 }
