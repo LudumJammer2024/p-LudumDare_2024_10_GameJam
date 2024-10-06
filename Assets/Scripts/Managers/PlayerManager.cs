@@ -84,6 +84,14 @@ public class PlayerManager : Singleton<PlayerManager>
         */
 
     }
+    private void OnEnable() 
+    {
+        GameState.OnGameStateChange += OnGameStateChange;
+    }
+    private void OnDisable() 
+    {
+        GameState.OnGameStateChange -= OnGameStateChange;
+    }
     private void Start()
     {
         if (m_HUD)
@@ -98,10 +106,17 @@ public class PlayerManager : Singleton<PlayerManager>
             controlEnabled = false;
         }
     }
-
-    public void EquipGun() //Call this with the Start button to get the gun
+    void OnGameStateChange(GameState.States gameState)
+    {
+        if(gameState == GameState.States.STARTED)
+        {
+            EquipGun();
+        }
+    }
+    public void EquipGun() //This is called using the OnGameStateChange
     {
         OnPlayerGunEquip.Invoke();
+        ControlEnable = true;
         m_HUD.SetActive(true);
         Debug.Log(PlayerRootGameObject);
         InputManager input = PlayerRootGameObject.GetComponentInChildren<InputManager>();
