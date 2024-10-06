@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [RequireComponent(typeof(LineRenderer))]
 public class NodeRayController : MonoBehaviour
 {
@@ -12,14 +13,20 @@ public class NodeRayController : MonoBehaviour
 
     private void Awake()
     {
-        if (!m_linkRayDestination)
-            throw new System.Exception("The MainNodeRayDestination is missig, the ray has no destination");
+        m_lineRenderer = GetComponent<LineRenderer>();
+        m_lineRenderer.enabled = false;
+        
+        if (!m_linkRayDestination) {
+            Debug.LogError("The MainNodeRayDestination is missing, the ray has no destination");
+            return;
+        }
 
         LinkRayInit();
     }
 
     private void Update()
     {
+        if (!m_linkRayDestination) return;
         //if (!m_linkState) return;
         m_lineRenderer.enabled = m_linkState;
 
@@ -34,6 +41,5 @@ public class NodeRayController : MonoBehaviour
         rayPositions[1] = m_linkRayDestination.position;
         m_lineRenderer.SetPositions(rayPositions);
         m_lineRenderer.enabled = false;
-
     }
 }

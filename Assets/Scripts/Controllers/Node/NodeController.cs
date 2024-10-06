@@ -13,6 +13,8 @@ public class NodeController : MonoBehaviour
 
     [SerializeField] private NodeState currentState = NodeState.Idle;
 
+    [Header("Events on transition")]
+
     // UnityEvents for state transitions
     public UnityEvent onIdle;
     public UnityEvent onUnderAttack;
