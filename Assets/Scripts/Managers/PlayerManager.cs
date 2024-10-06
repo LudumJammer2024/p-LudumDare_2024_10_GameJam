@@ -30,7 +30,7 @@ public class PlayerManager : Singleton<PlayerManager>
     */
 
     public bool controlEnabled = false; //TODO true
-    public bool lookEnabled = true;
+    public bool lookEnabled = false;
     public float volume = 1.0f;
     public float sensitivity = 1.0f;
 

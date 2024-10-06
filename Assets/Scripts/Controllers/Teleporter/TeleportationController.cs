@@ -16,7 +16,7 @@ public class TeleportationController : MonoBehaviour
     [SerializeField] private bool m_isEnable = false;
     private string m_playerTag;
     private float m_counter = 0.0f;
-    private bool m_isPlayerPresent = true; // should be false for default.
+    private bool m_isPlayerPresent = false; // should be false for default.
     public bool Enable { get => m_isEnable; set => m_isEnable = value; } // To controll the teleport from the Node
     public float Counter { get => m_counter;} // Exposing counter so it can read outside
 
@@ -34,13 +34,14 @@ public class TeleportationController : MonoBehaviour
         {
             m_counter = 0.0f;
             m_isPlayerPresent = false;
-            OnTeleport.Invoke(m_playerGO.transform);
+            OnTeleport?.Invoke(m_playerGO.transform);
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag(m_playerTag))
         {
+            Debug.Log(other.gameObject.name);
             m_playerGO = other.gameObject;
             m_isPlayerPresent = true;
         }
