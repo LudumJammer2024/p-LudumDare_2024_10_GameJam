@@ -97,7 +97,6 @@ public class NodeController : MonoBehaviour
                 break;
             case NodeState.Active:
                 onActive?.Invoke();
-                Debug.Log("Call Active on Game State");
                 m_gameState.ActivateNode(this);
                 break;
         }

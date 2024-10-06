@@ -30,7 +30,6 @@ public class GameState : ScriptableObject
         Current = States.IDLE;
         disableNodes = new List<NodeController>();
         activeNodes = new List<NodeController>();
-        Debug.Log("The Game State has been reset");
     }
 
     public void AddToDisableNodes(NodeController node)
@@ -39,17 +38,15 @@ public class GameState : ScriptableObject
         // If we get all the nodes, we trigger one of them as Under Attack!
         if (disableNodes.Count == m_nodesInGame)
         {
-            m_currentNode = disableNodes[0];
+            int randomNodeIndex = Random.Range(0, disableNodes.Count - 1);
+            m_currentNode = disableNodes[randomNodeIndex];
             m_currentNode.SetUnderAttack();
         }
-
-
 
     }
 
     public void ActivateNode(NodeController node)
     {
-        Debug.Log("Activating..." + node.gameObject.name);
         disableNodes.Remove(node);
         activeNodes.Add(node);
         NextNode();
