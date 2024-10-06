@@ -1076,9 +1076,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  m_Positions: []
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -1152,6 +1150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_linkRayDestination: {fileID: 0}
   m_linkState: 0
+  currenRayState: 0
 --- !u!1 &3159146883482965704
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,6 +2033,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8003476146779664298}
+        m_TargetAssemblyTypeName: NodeRayController, Assembly-CSharp
+        m_MethodName: UnderAttackAlertRay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onSafe:
     m_PersistentCalls:
       m_Calls:
@@ -2078,8 +2089,8 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 8003476146779664298}
         m_TargetAssemblyTypeName: NodeRayController, Assembly-CSharp
-        m_MethodName: set_LinkState
-        m_Mode: 6
+        m_MethodName: LinkRay
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3310,7 +3321,7 @@ PrefabInstance:
     - target: {fileID: 4829030032589658029, guid: 43f849e8807804b629c18fdf7781e4cd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 2.05
       objectReference: {fileID: 0}
     - target: {fileID: 4829030032589658029, guid: 43f849e8807804b629c18fdf7781e4cd,
         type: 3}
