@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections;
 
 [RequireComponent(typeof(SoundController))]
 [RequireComponent(typeof(MeshRenderer))]
