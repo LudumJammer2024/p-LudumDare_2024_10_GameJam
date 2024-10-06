@@ -70,10 +70,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f292dadab9cf94f29bd6e43d8e28efb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   m_timeToTeleport: 3
-  m_isEnabled: 0
+  m_playerGO: {fileID: 0}
   m_baseMeshRenderer: {fileID: 3249122737310300981}
-  m_baseMaterial: {fileID: 2100000, guid: ad8e53b80721c4c2ab5b46fba6b87ce5, type: 2}
+  m_baseReadyMaterial: {fileID: 2100000, guid: f11fd7f6d7ef9454499e61c5650b6e88, type: 2}
+  m_baseActiveMaterial: {fileID: 2100000, guid: ad8e53b80721c4c2ab5b46fba6b87ce5,
+    type: 2}
+  onReady:
+    m_PersistentCalls:
+      m_Calls: []
+  onActive:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2435245491532718108
 GameObject:
   m_ObjectHideFlags: 0

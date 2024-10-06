@@ -271,7 +271,7 @@ MonoBehaviour:
   onButtonPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6641597823628097964}
+      - m_Target: {fileID: 1566503793}
         m_TargetAssemblyTypeName: NodeController, Assembly-CSharp
         m_MethodName: SetUnderAttack
         m_Mode: 1
@@ -869,6 +869,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1233645811}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1566503793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5210628064883769368, guid: 77af53585b8f24d4393f960669b20e8e,
+    type: 3}
+  m_PrefabInstance: {fileID: 232904648682775593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8113a0ea450ed0498cf315b6e353647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1608151659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,6 +1349,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Node
       objectReference: {fileID: 0}
+    - target: {fileID: 7832939903418863508, guid: 77af53585b8f24d4393f960669b20e8e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832939903418863508, guid: 77af53585b8f24d4393f960669b20e8e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8003476146779664298, guid: 77af53585b8f24d4393f960669b20e8e,
         type: 3}
       propertyPath: m_linkRayDestination
@@ -1347,18 +1369,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77af53585b8f24d4393f960669b20e8e, type: 3}
---- !u!114 &6641597823628097964 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5210628064883769368, guid: 77af53585b8f24d4393f960669b20e8e,
-    type: 3}
-  m_PrefabInstance: {fileID: 232904648682775593}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8113a0ea450ed0498cf315b6e353647, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
