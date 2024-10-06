@@ -38,6 +38,11 @@ public class GameState : ScriptableObject
         if (disableNodes.Count == 0) WinGame();
         int randomNodeIndex = Random.Range(0, disableNodes.Count - 1);
         currentNode = disableNodes[randomNodeIndex];
+
+        // Logic done on the node
+        currentNode.SetUnderAttack();
+
+        // Display it on the minimap, etc
     }
 
     //Events

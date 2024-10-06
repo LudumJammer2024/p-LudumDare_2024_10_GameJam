@@ -4,30 +4,16 @@ using UnityEngine;
 /// Subscribes to the event delegate OnTeleport using the signature TeleportPlayer
 /// The TeleportPlayer event handler takes the Transform of the player and asigns it to the spawn Destination
 /// </summary>
-public class TeleportDestination : MonoBehaviour
+public class TeleportDestination : Singleton<TeleportDestination>
 {
-    public static TeleportDestination Instance { get; private set;}
-    [SerializeField] private Transform spawnDestination;
-    private void Awake()
-    {
-        // We only need ONE teleportation destination, so a duplicate will get detroyed
-        if(!Instance || Instance == null)
-        {
-            Instance = this;
-        }
-        else if(Instance != this)
-        {
-            Destroy(gameObject);
-        }
+    private Transform playerTransform;
 
-        if(!spawnDestination)
-        {
-            throw new Exception("Add the Spawn destination");
-        }
-    }
     private void TeleportPlayer(Transform playerPosition)
     {
-        playerPosition.transform.position = spawnDestination.position;
+        if (PlayerManager.Instance != null)
+        {
+            playerTransform = playerPosition;
+        }
     }
     private void OnEnable()
     {
@@ -38,5 +24,12 @@ public class TeleportDestination : MonoBehaviour
         TeleportationController.OnTeleport -= TeleportPlayer;
     }
 
-    
+    private void LateUpdate()
+    {
+        if (playerTransform != null)
+        {
+            playerTransform.position = transform.position;
+            playerTransform = null;
+        }
+    }
 }

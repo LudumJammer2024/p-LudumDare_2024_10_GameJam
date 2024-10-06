@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 574433832499865000}
   - component: {fileID: 443453409496848822}
   - component: {fileID: 2830458327274488736}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 574433832499865003}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -69,7 +69,7 @@ Camera:
     height: 1
   near clip plane: 0.2
   far clip plane: 500
-  field of view: 56
+  field of view: 65
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 1283882754386351999}
   - component: {fileID: 1283882754386351995}
   - component: {fileID: 1283882754386351994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1283882754878629562}
   - component: {fileID: 1283882754878629563}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerFollowCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 2340351755840094093}
   m_Lens:
-    FieldOfView: 56
+    FieldOfView: 65
     OrthographicSize: 10
     NearClipPlane: 0.2
     FarClipPlane: 500
@@ -341,7 +341,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1603597361665261151}
-  - component: {fileID: 979179203174024611}
   m_Layer: 6
   m_Name: PlayerRoot
   m_TagString: Player
@@ -367,33 +366,6 @@ Transform:
   - {fileID: 7333920802599525483}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &979179203174024611
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505116169090373434}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &2340351755840094090
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +375,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2340351755840094093}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerCameraRoot
   m_TagString: CinemachineTarget
   m_Icon: {fileID: 0}
@@ -434,7 +406,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4666124005121641471}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LaserTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -468,7 +440,7 @@ GameObject:
   - component: {fileID: 3244712308548389467}
   - component: {fileID: 2645131116561639001}
   - component: {fileID: 6390881588825022605}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -657,7 +629,7 @@ GameObject:
   - component: {fileID: 6034982305859244747}
   - component: {fileID: 6034982305859244746}
   - component: {fileID: 6034982305859244741}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -771,7 +743,7 @@ GameObject:
   - component: {fileID: 9143477954622353737}
   - component: {fileID: 725977856606440380}
   - component: {fileID: 8715538560533951851}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerCapsule
   m_TagString: Player
   m_Icon: {fileID: 0}
