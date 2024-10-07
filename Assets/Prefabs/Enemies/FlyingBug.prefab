@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 34629518619987778}
   - component: {fileID: 1038485624653471691}
   - component: {fileID: 4831197294569432711}
+  - component: {fileID: 621503026987593142}
   m_Layer: 0
   m_Name: FlyingBug
   m_TagString: Untagged
@@ -270,6 +271,18 @@ MonoBehaviour:
   OnEnemyDeath:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 621503026987593142}
+        m_TargetAssemblyTypeName: FlyingEnemyAudioController, Assembly-CSharp
+        m_MethodName: PlayDeathSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1038485624653471691}
         m_TargetAssemblyTypeName: EnemyHealth, Assembly-CSharp
         m_MethodName: DestroySelf
@@ -294,6 +307,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ef24494c07b474aadb3e699a7d83e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &621503026987593142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66466452240897891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 161ce558cbc8f0b46a0450f059b88cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buzzClips:
+  - {fileID: 8300000, guid: 6f190e1f04b91ea41abb097dccfef690, type: 3}
+  - {fileID: 8300000, guid: ac36e8ffab204c34c9a9037f114bb73b, type: 3}
+  - {fileID: 8300000, guid: f6c007c4a2a037e458a97efbda5031b4, type: 3}
+  deathClips:
+  - {fileID: 8300000, guid: a22bead44823f0747b6e422bf1990684, type: 3}
+  - {fileID: 8300000, guid: a22bead44823f0747b6e422bf1990684, type: 3}
+  buzzVolume: 1
+  killVolume: 1.2
+  minDistance: 1
+  maxDistance: 20
 --- !u!1001 &4138112840756832162
 PrefabInstance:
   m_ObjectHideFlags: 0
