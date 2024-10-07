@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
+using System.Collections;
 
 public class EnemyAnimationContoller : MonoBehaviour
 {
-    public AnimatorController m_animatorController;
+    public RuntimeAnimatorController m_animatorController;
     public AnimationClip attack;
     public AnimationClip idle;
     public AnimationClip death;
