@@ -18,7 +18,9 @@ public class ChasingEnemyController : MonoBehaviour
     private Vector3 patrolPosition;
     //[SerializeField] 
     private Transform target;
+    private ChasingEnemyAudioController audioController;
     private bool m_chase = false;
+    private bool m_playedChaseSound = false;
 
     private void Awake()
     {
@@ -29,7 +31,7 @@ public class ChasingEnemyController : MonoBehaviour
         if (m_fieldOfHearing == 0.0f) m_fieldOfView = 5f;
         if (m_angleOfViewBothSides == 0.0f) m_fieldOfView = 45f;
         if (m_maxChasingDistance == 0.0f || m_maxChasingDistance < m_fieldOfView) m_maxChasingDistance = m_fieldOfView * 1.5f;
-        
+
         if (m_sphereCollider == null)
             throw new System.NullReferenceException("The f* sphere collider is missing a reference.");
 
@@ -46,6 +48,8 @@ public class ChasingEnemyController : MonoBehaviour
         {
             sensingTrigger.enemyController = this;
         }
+
+        audioController = GetComponent<ChasingEnemyAudioController>();
     }
 
     private void Update()
@@ -71,6 +75,13 @@ public class ChasingEnemyController : MonoBehaviour
             {
                 agent.destination = patrolPosition;
                 m_chase = false;
+                m_playedChaseSound = false;
+            }
+
+            if (m_chase && !m_playedChaseSound && audioController != null)
+            {
+                audioController.PlayNoticeSound();
+                m_playedChaseSound = true;
             }
 
         }

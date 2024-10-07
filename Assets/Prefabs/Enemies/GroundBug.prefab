@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 9150971222957518348}
   - component: {fileID: 8632000127273631334}
   - component: {fileID: 3390600455444536005}
+  - component: {fileID: 1878617253142671166}
   m_Layer: 0
   m_Name: GroundBug
   m_TagString: Untagged
@@ -272,6 +273,18 @@ MonoBehaviour:
   OnEnemyDeath:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1878617253142671166}
+        m_TargetAssemblyTypeName: ChasingEnemyAudioController, Assembly-CSharp
+        m_MethodName: PlayDeathSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1038485624653471691}
         m_TargetAssemblyTypeName: EnemyHealth, Assembly-CSharp
         m_MethodName: DestroySelf
@@ -353,6 +366,29 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1878617253142671166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66466452240897891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116206a983f384446bc03a9d30389e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noticeClips:
+  - {fileID: 8300000, guid: 2f2351b20b11a324f9cddacbb94ee44e, type: 3}
+  - {fileID: 8300000, guid: b3209d23885aa1f4fb22c04ea1c6cf6b, type: 3}
+  - {fileID: 8300000, guid: fe97bfbc6ab55cd48b9f5826e0ba1dd1, type: 3}
+  deathClips:
+  - {fileID: 8300000, guid: 97b9108b1fa881e48b0b50a45f450790, type: 3}
+  - {fileID: 8300000, guid: 6b6913d8a6b06944e815edc1548acc83, type: 3}
+  noticeVolume: 1.5
+  killVolume: 1.2
+  minDistance: 1
+  maxDistance: 20
 --- !u!1 &4623053651825554470
 GameObject:
   m_ObjectHideFlags: 0
