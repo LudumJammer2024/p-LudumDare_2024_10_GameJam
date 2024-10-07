@@ -13,14 +13,26 @@ public class ChasingEnemyController : MonoBehaviour
     [SerializeField] private float m_angleOfViewBothSides = 0.0f;
 
     [SerializeField] private float m_maxChasingDistance = 0.0f;
-    [SerializeField] private float m_damageDealingDistance = 5.0f;
+    [SerializeField] private float m_damageDealingDistance = 2.0f;
     [SerializeField] private NavMeshAgent agent;
     private Vector3 patrolPosition;
+    private Vector3 previousPosition;
     //[SerializeField] 
     private Transform target;
     private ChasingEnemyAudioController audioController;
     private bool m_chase = false;
     private bool m_playedChaseSound = false;
+    // CHASING STATES
+    public enum ChasingStates
+    {
+        IDLE,
+        CHASE,
+        ATTACK,
+        RETURN
+    }
+    public ChasingStates currentChasinState = ChasingStates.IDLE;
+    private float m_attackCooldownProgress = 0;
+    private const float ATTACK_COOLDOWN_TIME = 5;
     // Events for the animator
     public enum EnemyStates
     {
@@ -61,30 +73,68 @@ public class ChasingEnemyController : MonoBehaviour
         }
 
         audioController = GetComponent<ChasingEnemyAudioController>();
+
+        m_attackCooldownProgress = ATTACK_COOLDOWN_TIME;
     }
 
     private void Update()
     {
+        Debug.Log(currentChasinState);
+        States(currentChasinState);
         if (!target) return;
         FieldOfViewVectorVisualizer(); //Comment this on final realease
         FieldOfHearing();
         FieldOfView();
         Chase();
+
+        //
+
+        if ((patrolPosition - transform.position).magnitude < 1 && !m_chase) //Good enough
+            OnChangeState(EnemyStates.IDLE);
+
+        //currentState
+
     }
+    //
+    private void States(ChasingStates chasinState)
+    {
+        //Debug.Log(enemyState);
+        switch (chasinState)
+        {
+            case ChasingStates.ATTACK:
+                agent.destination = transform.position;
+                break;
+            case ChasingStates.CHASE:
+                agent.destination = target.position;
+                break;
+            case ChasingStates.IDLE:
+                break;
+            case ChasingStates.RETURN:
+                agent.destination = patrolPosition;
+                break;
+        }
+    }
+    //
 
     private void Chase()
     {
+
         if (m_chase)
         {
-            Debug.DrawLine(transform.position, target.position, Color.red);
+            //previousPosition = transform.position;
+            //Debug.DrawLine(transform.position, target.position, Color.red);
             if ((target.position - transform.position).magnitude < m_maxChasingDistance)
             {
-                agent.destination = target.position;
+
+                //currentChasinState = ChasingStates.CHASE;
+                //agent.destination = target.position;
                 DealDamage();
             }
             else
             {
-                agent.destination = patrolPosition;
+                //agent.destination = patrolPosition;
+                currentChasinState = ChasingStates.RETURN;
+                OnChangeState(EnemyStates.WALK);
                 m_chase = false;
                 m_playedChaseSound = false;
             }
@@ -97,11 +147,36 @@ public class ChasingEnemyController : MonoBehaviour
 
         }
     }
-
     private void DealDamage()
     {
-        if ((target.position - transform.position).magnitude < m_damageDealingDistance)
-            m_playerState.DealDamage();//.Health -= (int) 5.0f * Time.deltaTime;
+        
+        if ((target.position - transform.position).magnitude < m_damageDealingDistance && isFacingThePlayer())
+        {
+            // We make the enemy stop to attack
+            currentChasinState = ChasingStates.ATTACK;
+            m_playerState.DealDamage();
+
+
+            if (m_attackCooldownProgress >= ATTACK_COOLDOWN_TIME)
+            {
+                OnChangeState(EnemyStates.ATTACK);
+                Debug.Log("ATTACK sent!");
+                m_attackCooldownProgress = 0;
+            }
+            m_attackCooldownProgress += 1 * Time.deltaTime;
+        }
+        else
+        {
+            OnChangeState(EnemyStates.WALK);
+            currentChasinState = ChasingStates.CHASE;
+        }
+        //.Health -= (int) 5.0f * Time.deltaTime;
+    }
+    private bool isFacingThePlayer()
+    {
+        // Dot product to check if the player is indeed in front, otherwise the mats will atack the air if the player passes behind
+        Vector3 targetWithRepectToAgent = (target.position - transform.position).normalized;
+        return (Vector3.Dot(transform.forward, targetWithRepectToAgent) > Mathf.Sin(m_angleOfViewBothSides * Mathf.Deg2Rad));
     }
     private void FieldOfView()
     {
@@ -111,7 +186,8 @@ public class ChasingEnemyController : MonoBehaviour
             if (Vector3.Dot(transform.forward, targetWithRepectToAgent) > Mathf.Sin(m_angleOfViewBothSides * Mathf.Deg2Rad))
             {
                 m_chase = true;
-                OnChangeState(EnemyStates.WALK);
+                currentChasinState = ChasingStates.CHASE;
+                //OnChangeState(EnemyStates.WALK);
             }
 
         }
@@ -130,8 +206,9 @@ public class ChasingEnemyController : MonoBehaviour
         if ((target.position - transform.position).magnitude < m_fieldOfHearing)
         {
             Debug.DrawLine(transform.position, target.position, Color.green);
-            agent.destination = target.position;
+            //agent.destination = target.position;
             m_chase = true;
+            currentChasinState = ChasingStates.CHASE;
         }
         else
         {

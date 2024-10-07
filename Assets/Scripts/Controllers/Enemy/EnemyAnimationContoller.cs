@@ -17,7 +17,7 @@ public class EnemyAnimationContoller : MonoBehaviour
         m_animator = GetComponentInChildren<Animator>();
         //m_animatorController = m_animator.
 
-        Debug.Log(m_animator);
+        //Debug.Log(m_animator);
         m_animator.Play(idle.name, 0);
     }
 
@@ -38,7 +38,6 @@ public class EnemyAnimationContoller : MonoBehaviour
             case ChasingEnemyController.EnemyStates.DEATH:
                 m_animator.Play(death.name, 0);
                 break;
-
         }
     }
     private void OnEnable()
