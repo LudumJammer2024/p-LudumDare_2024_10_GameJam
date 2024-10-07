@@ -249,5 +249,10 @@ public class PlayerShooting : MonoBehaviour
         canShoot = true;
         isGunEnabled = true;
     }
+
+    void OnDestroy()
+    {
+        PlayerManager.OnPlayerGunEquip -= EnableGun;
+    }
 }
 

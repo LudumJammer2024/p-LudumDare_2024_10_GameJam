@@ -73,6 +73,7 @@ public class TeleportationController : MonoBehaviour
         {
             m_isPlayerPresent = false;
             m_playerGO = null;
+            m_counter = 0.0f;
             if (HUDManager.Instance != null) HUDManager.Instance.DisplayingTeleportPrompt = false;
         }
     }

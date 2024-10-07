@@ -54,6 +54,11 @@ public class UIPauseMenuManager : Singleton<UIPauseMenuManager>
     {
         isVisible = visible;
         if (ContainerCanvas != null) ContainerCanvas.SetActive(visible);
-        Cursor.lockState = visible ? CursorLockMode.None : CursorLockMode.Locked;
+
+        if (PlayerManager.Instance != null)
+        {
+            Cursor.lockState = visible ? CursorLockMode.None : (PlayerManager.Instance.equippedGun ? CursorLockMode.Locked: CursorLockMode.None);
+        }
+        else Cursor.lockState = visible ? CursorLockMode.None : CursorLockMode.Locked;
     }
 }

@@ -23,6 +23,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     [Header("Setable fields and states")]
     public bool isAlive = true;
+    public bool equippedGun = false;
 
     /*NOTE
     On the start the cursor is enable, no crosshair
@@ -132,5 +133,6 @@ public class PlayerManager : Singleton<PlayerManager>
         //Debug.Log(PlayerRootGameObject);
         InputManager input = PlayerRootGameObject.GetComponentInChildren<InputManager>();
         input.SetCursorState(true);
+        equippedGun = true;
     }
 }

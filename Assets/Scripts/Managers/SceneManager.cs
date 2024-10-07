@@ -85,6 +85,9 @@ public class SceneManagerSingleton : Singleton<SceneManagerSingleton>
                 {
                     PlayerManager.Instance.controlEnabled = true;
                     PlayerManager.Instance.lookEnabled = true;
+
+                    Cursor.lockState = PlayerManager.Instance.equippedGun ? CursorLockMode.Locked: CursorLockMode.None;
+                    break;
                 }
                 Cursor.lockState = CursorLockMode.Locked;
                 break;

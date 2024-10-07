@@ -607,8 +607,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_teleportPromptGameObject: {fileID: 7370190625115788933}
   m_teleportPromptText: {fileID: 3591312053023292387}
-  m_startPosition: {x: 0, y: 0}
-  m_endPosition: {x: 0, y: 0}
+  m_startPosition: {x: 0, y: -576}
+  m_endPosition: {x: 0, y: -80}
   m_animationDuration: 1
   m_teleportTime: 3
 --- !u!114 &2576066398052178644
