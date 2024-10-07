@@ -8,6 +8,7 @@ public class NodeAudioController : MonoBehaviour
 
     [SerializeField] private AudioClip idleLoopClip;
     [SerializeField] private AudioClip underAttackLoopClip;
+    [SerializeField] private AudioClip underAttackLoopClip2;
     [SerializeField] private AudioClip activeLoopClip;
     [SerializeField] private AudioClip activeLoopClip2;
 
@@ -33,13 +34,22 @@ public class NodeAudioController : MonoBehaviour
     public void PlayUnderAttack()
     {
         StopAllLoopingSounds();
+
         loopAudioSource.clip = underAttackLoopClip;
         loopAudioSource.Play();
+
+        loopAudioSource2.maxDistance = 100;
+        loopAudioSource2.clip = underAttackLoopClip2;
+        loopAudioSource2.Play();
     }
 
     public void PlaySafe()
     {
+        StopAllLoopingSounds();
         PlayOneShot(safeOneShotClips);
+
+        loopAudioSource.clip = underAttackLoopClip;
+        loopAudioSource.Play();
     }
 
     public void PlayActive()
@@ -50,6 +60,7 @@ public class NodeAudioController : MonoBehaviour
         loopAudioSource.clip = activeLoopClip;
         loopAudioSource.Play();
 
+        loopAudioSource2.maxDistance = maxDistance;
         loopAudioSource2.clip = activeLoopClip2;
         loopAudioSource2.Play();
     }

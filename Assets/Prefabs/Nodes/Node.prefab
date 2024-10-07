@@ -2274,6 +2274,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleLoopClip: {fileID: 8300000, guid: 659eaeade225a954298c571a7084b5bf, type: 3}
   underAttackLoopClip: {fileID: 8300000, guid: 3c2e4d0b09e5ca248bea21e08035ab0e, type: 3}
+  underAttackLoopClip2: {fileID: 8300000, guid: 731991dc3e12e8249ab357050369aa99,
+    type: 3}
   activeLoopClip: {fileID: 8300000, guid: 4600816bb76d7a6439811d5dc07e462b, type: 3}
   activeLoopClip2: {fileID: 8300000, guid: b42549c1ff3edb9458404eacae7ae7ef, type: 3}
   safeOneShotClips:

@@ -201,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
 
 			if (_footstepTimer >= _footstepInterval)
 			{
-				AudioManager.Instance.PlayOneShot(m_footstepClips);
+				if (AudioManager.Instance != null) AudioManager.Instance.PlayOneShot(m_footstepClips);
 				_footstepTimer = 0.0f;
 			}
 		}
@@ -216,8 +216,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (!_wasGrounded && Grounded)
 		{
-			// Play landing sound
-			AudioManager.Instance.PlayOneShot(m_landingClips);
+			if (AudioManager.Instance != null) AudioManager.Instance.PlayOneShot(m_landingClips);
 		}
 		_wasGrounded = Grounded;
 	}
