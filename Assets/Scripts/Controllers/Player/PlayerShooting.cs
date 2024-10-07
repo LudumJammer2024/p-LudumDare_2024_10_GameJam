@@ -106,12 +106,15 @@ public class PlayerShooting : MonoBehaviour
 
     private IEnumerator ShootLaser()
     {
+        int playerLayer = LayerMask.NameToLayer("Player");
+        int layerMask = ~(1 << playerLayer);
+
         // Cast a ray from the center of the screen forward
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         RaycastHit hit;
 
         // If the ray hits something
-        if (Physics.Raycast(ray, out hit, shootRange))
+        if (Physics.Raycast(ray, out hit, shootRange, layerMask))
         {
             IHitable hitObject = hit.collider.GetComponent<IHitable>();
 
