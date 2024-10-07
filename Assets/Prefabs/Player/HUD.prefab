@@ -302,6 +302,7 @@ GameObject:
   - component: {fileID: 4937230379390429586}
   - component: {fileID: 665100350026201114}
   - component: {fileID: 3331890250764872607}
+  - component: {fileID: 13256633583958827}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -449,7 +450,7 @@ MonoBehaviour:
   onDisplayTeleportPrompt:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7913308711754116945}
+      - m_Target: {fileID: 13256633583958827}
         m_TargetAssemblyTypeName: HUDTeleportPrompt, Assembly-CSharp
         m_MethodName: OnDisplayTeleportPrompt
         m_Mode: 1
@@ -464,7 +465,7 @@ MonoBehaviour:
   onNotDisplayTeleportPrompt:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7913308711754116945}
+      - m_Target: {fileID: 13256633583958827}
         m_TargetAssemblyTypeName: HUDTeleportPrompt, Assembly-CSharp
         m_MethodName: OnHideTeleportPrompt
         m_Mode: 1
@@ -587,6 +588,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerState: {fileID: 11400000, guid: f02db333380094716aa82f0095c86228, type: 2}
   m_redOverlayOfDeath: {fileID: 3062035383460409191}
+  m_pulseSpeed: 1.5
+  m_healthThresholdStart: 0.8
+  m_healthThresholdEnd: 0.1
+--- !u!114 &13256633583958827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951876557614787257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b317c55f6b607048bc12032c9620952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_teleportPromptGameObject: {fileID: 7370190625115788933}
+  m_teleportPromptText: {fileID: 3591312053023292387}
+  m_startPosition: {x: 0, y: 0}
+  m_endPosition: {x: 0, y: 0}
+  m_animationDuration: 1
+  m_teleportTime: 3
 --- !u!1 &2147648900072945492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,7 +1175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1202681248165538794
 RectTransform:
   m_ObjectHideFlags: 0

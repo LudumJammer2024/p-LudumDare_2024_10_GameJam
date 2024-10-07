@@ -49,6 +49,8 @@ public class TeleportationController : MonoBehaviour
 
         if (currentState == TeleporterState.Ready) SetActive();
 
+        if (HUDManager.Instance != null) HUDManager.Instance.DisplayingTeleportPrompt = true;
+
         if (m_counter >= m_timeToTeleport && m_isPlayerPresent && m_playerGO && currentState == TeleporterState.Active)
         {
             m_counter = 0.0f;
@@ -63,7 +65,6 @@ public class TeleportationController : MonoBehaviour
             m_playerGO = other.gameObject;
             m_isPlayerPresent = true;
             Debug.Log("Player on teleport: " + m_playerGO.name);
-            if (HUDManager.Instance != null) HUDManager.Instance.DisplayingTeleportPrompt = true;
         }
     }
     private void OnTriggerExit(Collider other)
