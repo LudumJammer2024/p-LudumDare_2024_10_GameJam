@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HUDCallOfDutyFX : MonoBehaviour
 {
     [SerializeField] PlayerState m_playerState;
+    [SerializeField] private AudioSource m_heartbeatAudio;
     [SerializeField] private RawImage m_redOverlayOfDeath; // Notice the late night variable naming inspiration
     [SerializeField] private float m_pulseSpeed = 1.5f;
     [SerializeField] private float m_healthThresholdStart = 0.8f;
@@ -15,6 +16,11 @@ public class HUDCallOfDutyFX : MonoBehaviour
     {
         if (!m_playerState)
             throw new System.NullReferenceException("Add the F* PlayerState");
+
+        if (!m_heartbeatAudio)
+            throw new System.NullReferenceException("Add an AudioSource component for the heartbeat sound");
+
+        m_heartbeatAudio.loop = true;
     }
     private void Update()
     {
@@ -22,18 +28,21 @@ public class HUDCallOfDutyFX : MonoBehaviour
         float alpha = 0f;
         float normalisedHealth = Mathf.Clamp(m_playerState.Health / m_playerState.MaxHealth, 0f, 1f);
 
-        if (normalisedHealth > m_healthThresholdStart) alpha = 0f;
+        if (normalisedHealth > m_healthThresholdStart)
+        {
+            m_heartbeatAudio.volume = alpha = 0f;
+        }
 
         else
         {
             if (normalisedHealth <= m_healthThresholdStart && normalisedHealth > m_healthThresholdEnd)
             {
                 float t = Mathf.InverseLerp(m_healthThresholdEnd, m_healthThresholdStart, normalisedHealth);
-                alpha = Mathf.Lerp(1f, 0f, t);
+                m_heartbeatAudio.volume = alpha = Mathf.Lerp(1f, 0f, t);
             }
             else
             {
-                alpha = 1f;
+                m_heartbeatAudio.volume = alpha = 1f;
             }
 
             float pulse = Mathf.Sin(Time.time * m_pulseSpeed) * 0.1f;
@@ -41,6 +50,15 @@ public class HUDCallOfDutyFX : MonoBehaviour
         }
 
         m_redOverlayOfDeath.color = new Color(1, 1, 1, alpha);
+
+        if (!m_heartbeatAudio.isPlaying && normalisedHealth <= m_healthThresholdStart)
+        {
+            m_heartbeatAudio.Play();
+        }
+        else if (normalisedHealth > m_healthThresholdStart && m_heartbeatAudio.isPlaying)
+        {
+            m_heartbeatAudio.Stop();
+        }
 
     }
 }

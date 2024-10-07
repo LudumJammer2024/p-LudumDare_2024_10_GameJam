@@ -2006,6 +2006,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1618162141239406607}
+        m_TargetAssemblyTypeName: NodeAudioController, Assembly-CSharp
+        m_MethodName: PlayIdle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onUnderAttack:
     m_PersistentCalls:
       m_Calls:
@@ -2045,6 +2057,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1618162141239406607}
+        m_TargetAssemblyTypeName: NodeAudioController, Assembly-CSharp
+        m_MethodName: PlayUnderAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onSafe:
     m_PersistentCalls:
       m_Calls:
@@ -2063,6 +2087,18 @@ MonoBehaviour:
       - m_Target: {fileID: 5428630236919618246}
         m_TargetAssemblyTypeName: TeleportationController, Assembly-CSharp
         m_MethodName: SetReady
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1618162141239406607}
+        m_TargetAssemblyTypeName: NodeAudioController, Assembly-CSharp
+        m_MethodName: PlaySafe
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2099,6 +2135,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1618162141239406607}
+        m_TargetAssemblyTypeName: NodeAudioController, Assembly-CSharp
+        m_MethodName: PlayActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &6640026800145775544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,6 +2159,7 @@ GameObject:
   - component: {fileID: 1183386046011464728}
   - component: {fileID: 1404053343026260769}
   - component: {fileID: 7277962564939861696}
+  - component: {fileID: 1618162141239406607}
   m_Layer: 0
   m_Name: Stalk
   m_TagString: Untagged
@@ -2204,6 +2253,32 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1618162141239406607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6640026800145775544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f1723cfad1c3f44bb99120a305c061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleLoopClip: {fileID: 8300000, guid: 659eaeade225a954298c571a7084b5bf, type: 3}
+  underAttackLoopClip: {fileID: 8300000, guid: 3c2e4d0b09e5ca248bea21e08035ab0e, type: 3}
+  activeLoopClip: {fileID: 8300000, guid: 4600816bb76d7a6439811d5dc07e462b, type: 3}
+  activeLoopClip2: {fileID: 8300000, guid: b42549c1ff3edb9458404eacae7ae7ef, type: 3}
+  safeOneShotClips:
+  - {fileID: 8300000, guid: 752a76a5cbfe0ee45ba3e6c0f73f2135, type: 3}
+  - {fileID: 8300000, guid: 7e0fe0f142df88642ab187f4d45c61e1, type: 3}
+  activeOneShotClips:
+  - {fileID: 8300000, guid: ea718d5109b17264a987b3b69a011d7b, type: 3}
+  - {fileID: 8300000, guid: e5f617065f028054c89d4e623e9947ea, type: 3}
+  - {fileID: 8300000, guid: bf5621d94ff65fe49a71bf2d52f5beb8, type: 3}
+  volume: 1
+  minDistance: 1
+  maxDistance: 30
 --- !u!1 &7784740094646217444
 GameObject:
   m_ObjectHideFlags: 0

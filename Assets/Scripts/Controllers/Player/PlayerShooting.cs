@@ -107,7 +107,8 @@ public class PlayerShooting : MonoBehaviour
     private IEnumerator ShootLaser()
     {
         int playerLayer = LayerMask.NameToLayer("Player");
-        int layerMask = ~(1 << playerLayer);
+        int ignoreRaycastLayer = LayerMask.NameToLayer("Ignore Raycast");
+        int layerMask = ~(1 << playerLayer | 1 << ignoreRaycastLayer);
 
         // Cast a ray from the center of the screen forward
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
@@ -118,25 +119,14 @@ public class PlayerShooting : MonoBehaviour
         {
             IHitable hitObject = hit.collider.GetComponent<IHitable>();
 
-            // Checks if the Collider is NOT an SphereCollider, since the SphereCollider is being use for the sensing range
-            if (hitObject != null && hit.collider.GetType() != typeof(SphereCollider))
+            if (hitObject != null)
             {
                 hitObject.OnHit();
             }
 
-            if (hit.collider.GetType() == typeof(SphereCollider))
-            {
-                // If hit the huge SphereCollider, draw the laser forward to the max range
-                lineRenderer.SetPosition(0, laserOrigin.position);
-                lineRenderer.SetPosition(1, laserOrigin.position + (Camera.main.transform.forward * shootRange));
-            }
-            else
-            {
-                // Draw the laser from the origin to the hit point
-                lineRenderer.SetPosition(0, laserOrigin.position);
-                lineRenderer.SetPosition(1, hit.point);
-            }
-
+            // Draw the laser from the origin to the hit point
+            lineRenderer.SetPosition(0, laserOrigin.position);
+            lineRenderer.SetPosition(1, hit.point);
         }
         else
         {
