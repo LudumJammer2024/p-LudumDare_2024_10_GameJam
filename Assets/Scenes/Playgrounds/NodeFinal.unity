@@ -708,6 +708,7 @@ MonoBehaviour:
     type: 3}
   spawnPoint: {fileID: 1882914560}
   isAlive: 1
+  equippedGun: 0
   controlEnabled: 1
   lookEnabled: 1
   volume: 1
@@ -1284,6 +1285,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 979693055889156204, guid: 77af53585b8f24d4393f960669b20e8e,
+        type: 3}
+      propertyPath: m_flyingSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2391338773485626001, guid: 77af53585b8f24d4393f960669b20e8e,
         type: 3}
       propertyPath: m_LocalPosition.x
