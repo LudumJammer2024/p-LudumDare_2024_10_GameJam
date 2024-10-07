@@ -73,7 +73,7 @@ public class NodeAudioController : MonoBehaviour
         oneShotAudioSource.PlayOneShot(clips[index], volume);
     }
 
-    private void StopAllLoopingSounds()
+    public void StopAllLoopingSounds()
     {
         if (loopAudioSource == null) return;
         if (loopAudioSource.isPlaying)
