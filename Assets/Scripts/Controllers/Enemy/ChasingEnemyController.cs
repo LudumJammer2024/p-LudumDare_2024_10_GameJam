@@ -21,7 +21,18 @@ public class ChasingEnemyController : MonoBehaviour
     private ChasingEnemyAudioController audioController;
     private bool m_chase = false;
     private bool m_playedChaseSound = false;
+    // Events for the animator
+    public enum EnemyStates
+    {
+        IDLE,
+        WALK,
+        ATTACK,
+        DEATH
+    }
+    public delegate void EnemyStateMachine(EnemyStates state);
+    public static event EnemyStateMachine OnChangeState;
 
+    //
     private void Awake()
     {
         if (!m_playerState)
@@ -100,6 +111,7 @@ public class ChasingEnemyController : MonoBehaviour
             if (Vector3.Dot(transform.forward, targetWithRepectToAgent) > Mathf.Sin(m_angleOfViewBothSides * Mathf.Deg2Rad))
             {
                 m_chase = true;
+                OnChangeState(EnemyStates.WALK);
             }
 
         }
