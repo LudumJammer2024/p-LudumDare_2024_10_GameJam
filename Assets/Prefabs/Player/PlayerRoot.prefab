@@ -1107,8 +1107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd5653f3341cd64e88e0703e8fbcf8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 0}
-  musicVolume: 0.5
+  music: {fileID: 8300000, guid: 540759ad0214922429b5f0e595a75950, type: 3}
+  musicVolume: 0.6
   fadeDuration: 2
   m_gameState: {fileID: 11400000, guid: 145ccd52cdff54e9689bd7ed0379fbd4, type: 2}
 --- !u!1001 &2182615542703864710
