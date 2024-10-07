@@ -38,6 +38,16 @@ public class PlayerMovement : MonoBehaviour
 	[Tooltip("What layers the character uses as ground")]
 	public LayerMask GroundLayers;
 
+	[Header("Footstep and Landing Audio")]
+	[Tooltip("Footstep sounds to play while walking or running")]
+	[SerializeField] private AudioClip[] m_footstepClips;
+
+	[Tooltip("Landing sounds to play when we land")]
+	[SerializeField] private AudioClip[] m_landingClips;
+	private float _footstepTimer = 0.0f;
+	private float _baseFootstepInterval = 0.5f;
+	private float _footstepInterval = 0.5f;
+
 	// player
 	private float _speed;
 	private float _verticalVelocity;
@@ -46,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
 	// timeout deltatime
 	private float _jumpTimeoutDelta;
 	private float _fallTimeoutDelta;
+	private bool _wasGrounded = true;
 
 	private CharacterController _controller;
 	private InputManager _input;
@@ -68,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
 		JumpAndGravity();
 		GroundedCheck();
 		Move();
+		HandleLandingSound();
 	}
 
 	private void GroundedCheck()
@@ -81,6 +93,8 @@ public class PlayerMovement : MonoBehaviour
 	{
 		// set target speed based on move speed, sprint speed and if sprint is pressed
 		float targetSpeed = _input.IsSprinting() ? SprintSpeed : MoveSpeed;
+
+		_footstepInterval = _input.IsSprinting() ? _baseFootstepInterval * (MoveSpeed / SprintSpeed) : _baseFootstepInterval;
 
 		// a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -104,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
 			// round speed to 3 decimal places
 			_speed = Mathf.Round(_speed * 1000f) / 1000f;
 		}
-		else 
+		else
 		{
 			_speed = targetSpeed;
 		}
@@ -123,6 +137,8 @@ public class PlayerMovement : MonoBehaviour
 		// move the player
 		Vector3 finalMovement = (inputDirection.normalized * _speed + new Vector3(0, _verticalVelocity, 0)) * Time.deltaTime;
 		_controller.Move(finalMovement);
+
+		HandleFootstepSounds(currentHorizontalSpeed, targetSpeed);
 	}
 
 	private void JumpAndGravity()
@@ -174,5 +190,34 @@ public class PlayerMovement : MonoBehaviour
 		{
 			_verticalVelocity += Gravity * Time.deltaTime;
 		}
+	}
+
+
+	private void HandleFootstepSounds(float currentSpeed, float targetSpeed)
+	{
+		if (Grounded && currentSpeed > 0.1f)
+		{
+			_footstepTimer += Time.deltaTime;
+
+			if (_footstepTimer >= _footstepInterval)
+			{
+				if (AudioManager.Instance != null) AudioManager.Instance.PlayOneShot(m_footstepClips);
+				_footstepTimer = 0.0f;
+			}
+		}
+		else
+		{
+			_footstepTimer = 0.0f;
+		}
+	}
+
+
+	private void HandleLandingSound()
+	{
+		if (!_wasGrounded && Grounded)
+		{
+			if (AudioManager.Instance != null) AudioManager.Instance.PlayOneShot(m_landingClips);
+		}
+		_wasGrounded = Grounded;
 	}
 }

@@ -690,6 +690,15 @@ MonoBehaviour:
   GroundLayers:
     serializedVersion: 2
     m_Bits: 1
+  m_footstepClips:
+  - {fileID: 8300000, guid: 5a740d067ea2c7343b0ce665f05fa51c, type: 3}
+  - {fileID: 8300000, guid: cbab67131c8d7374d933d3a791a12fc6, type: 3}
+  - {fileID: 8300000, guid: bf46bfcca69b8a74aa4f7432564e0942, type: 3}
+  - {fileID: 8300000, guid: f9f522a993f93df489397a3004f7c8d3, type: 3}
+  m_landingClips:
+  - {fileID: 8300000, guid: 7c390761996136c439801a66d3f61baa, type: 3}
+  - {fileID: 8300000, guid: a9cc957586715e24c91c708984bf704f, type: 3}
+  - {fileID: 8300000, guid: 15f42d1b171d9284cbd3b79b4b9c4468, type: 3}
 --- !u!114 &6648169479379440725
 MonoBehaviour:
   m_ObjectHideFlags: 0

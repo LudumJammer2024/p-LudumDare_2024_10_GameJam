@@ -64,7 +64,7 @@ public class TeleportationController : MonoBehaviour
         {
             m_playerGO = other.gameObject;
             m_isPlayerPresent = true;
-            Debug.Log("Player on teleport: " + m_playerGO.name);
+            //Debug.Log("Player on teleport: " + m_playerGO.name);
         }
     }
     private void OnTriggerExit(Collider other)

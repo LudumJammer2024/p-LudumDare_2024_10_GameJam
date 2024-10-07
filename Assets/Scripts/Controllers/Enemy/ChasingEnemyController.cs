@@ -3,7 +3,6 @@ using UnityEngine.AI;
 
 //[RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(SphereCollider))]
 public class ChasingEnemyController : MonoBehaviour
 {
     [SerializeField] private PlayerState m_playerState;
@@ -30,8 +29,10 @@ public class ChasingEnemyController : MonoBehaviour
         if (m_fieldOfHearing == 0.0f) m_fieldOfView = 5f;
         if (m_angleOfViewBothSides == 0.0f) m_fieldOfView = 45f;
         if (m_maxChasingDistance == 0.0f || m_maxChasingDistance < m_fieldOfView) m_maxChasingDistance = m_fieldOfView * 1.5f;
+        
+        if (m_sphereCollider == null)
+            throw new System.NullReferenceException("The f* sphere collider is missing a reference.");
 
-        m_sphereCollider = GetComponent<SphereCollider>();
         agent = GetComponent<NavMeshAgent>();
 
         patrolPosition = transform.position;
@@ -40,6 +41,11 @@ public class ChasingEnemyController : MonoBehaviour
 
         m_sphereCollider.isTrigger = true; //This is a trigger that checks for a player
         m_sphereCollider.radius = m_fieldOfView;
+
+        if (m_sphereCollider.gameObject.TryGetComponent<EnemySensingTrigger>(out EnemySensingTrigger sensingTrigger))
+        {
+            sensingTrigger.enemyController = this;
+        }
     }
 
     private void Update()
@@ -137,11 +143,8 @@ public class ChasingEnemyController : MonoBehaviour
         Debug.DrawLine(target.position, target.position + target.forward * m_fieldOfView, Color.yellow);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnPlayerDetected(Transform playerTransform)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            target = other.gameObject.transform;
-        }
+        target = playerTransform;
     }
 }
