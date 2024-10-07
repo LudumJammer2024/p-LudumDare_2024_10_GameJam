@@ -32,6 +32,12 @@ public class TeleportationController : MonoBehaviour
     public UnityEvent onReady;
     public UnityEvent onActive;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip activationSound;
+    [SerializeField] private AudioClip deactivationSound;
+    [SerializeField] private AudioClip teleportationSound;
+    private AudioSource audioSource;
+
     private string m_playerTag = "Player";
     private float m_counter = 0.0f;
     private bool m_isPlayerPresent = false;
@@ -40,6 +46,13 @@ public class TeleportationController : MonoBehaviour
     private void Start()
     {
         SetState(currentState);
+
+        // Add audio source
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.spatialBlend = 1.0f;
+        audioSource.minDistance = 1.0f;
+        audioSource.maxDistance = 20.0f;
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
     }
 
     private void Update()
@@ -51,11 +64,20 @@ public class TeleportationController : MonoBehaviour
 
         if (HUDManager.Instance != null) HUDManager.Instance.DisplayingTeleportPrompt = true;
 
+        if (!audioSource.isPlaying && activationSound != null && currentState == TeleporterState.Active)
+        {
+            audioSource.clip = activationSound;
+            audioSource.Play();
+        }
+
         if (m_counter >= m_timeToTeleport && m_isPlayerPresent && m_playerGO && currentState == TeleporterState.Active)
         {
             m_counter = 0.0f;
             m_isPlayerPresent = false;
             OnTeleport?.Invoke(m_playerGO.transform);
+            if (audioSource.isPlaying) audioSource.Stop();
+
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayOneShot(teleportationSound);
         }
     }
     private void OnTriggerStay(Collider other)
@@ -71,10 +93,14 @@ public class TeleportationController : MonoBehaviour
     {
         if (other.gameObject.CompareTag(m_playerTag))
         {
+            // Stop playing the activate sound and play the deactivate sound
             m_isPlayerPresent = false;
             m_playerGO = null;
             m_counter = 0.0f;
             if (HUDManager.Instance != null) HUDManager.Instance.DisplayingTeleportPrompt = false;
+
+            if (audioSource.isPlaying) audioSource.Stop();
+            audioSource.PlayOneShot(deactivationSound);
         }
     }
 

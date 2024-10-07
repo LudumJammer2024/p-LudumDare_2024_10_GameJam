@@ -83,6 +83,9 @@ MonoBehaviour:
   onActive:
     m_PersistentCalls:
       m_Calls: []
+  activationSound: {fileID: 8300000, guid: 9700f0df1da8dfa4fb4a9a4e266fd185, type: 3}
+  deactivationSound: {fileID: 8300000, guid: 03da0898875adad47a454389a034174f, type: 3}
+  teleportationSound: {fileID: 8300000, guid: 1ad50d6e2c6d4e144adaa0468ed4ddbb, type: 3}
 --- !u!1 &2435245491532718108
 GameObject:
   m_ObjectHideFlags: 0
