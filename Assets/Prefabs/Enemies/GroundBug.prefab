@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
-  damageAmount: 10
+  damageAmount: 30
   OnEnemyDeath:
     m_PersistentCalls:
       m_Calls:
@@ -409,6 +409,7 @@ MonoBehaviour:
   death: {fileID: 4348485665485846014, guid: e2183643555796a48b9d13780ff339a6, type: 3}
   walk: {fileID: 2667949614841947897, guid: e2183643555796a48b9d13780ff339a6, type: 3}
   m_animator: {fileID: 0}
+  chasingEnemyController: {fileID: 0}
 --- !u!1 &4623053651825554470
 GameObject:
   m_ObjectHideFlags: 0
