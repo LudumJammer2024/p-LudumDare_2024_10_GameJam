@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 725977856606440380}
   - component: {fileID: 8715538560533951851}
   - component: {fileID: 4337932230891451265}
+  - component: {fileID: 3614529728764983971}
   m_Layer: 6
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -1094,6 +1095,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f5162978ea4f84999f822d1c3b9a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3614529728764983971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7965885535006394065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cd5653f3341cd64e88e0703e8fbcf8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 0}
+  musicVolume: 0.5
+  fadeDuration: 2
+  m_gameState: {fileID: 11400000, guid: 145ccd52cdff54e9689bd7ed0379fbd4, type: 2}
 --- !u!1001 &2182615542703864710
 PrefabInstance:
   m_ObjectHideFlags: 0
