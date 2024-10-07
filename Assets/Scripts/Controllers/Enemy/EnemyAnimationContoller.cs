@@ -11,10 +11,12 @@ public class EnemyAnimationContoller : MonoBehaviour
     public AnimationClip death;
     public AnimationClip walk;
     public Animator m_animator;
+    public ChasingEnemyController chasingEnemyController; //pass the ref to subscribe to the event
 
     private void Awake()
     {
         m_animator = GetComponentInChildren<Animator>();
+        chasingEnemyController = GetComponent<ChasingEnemyController>();
         //m_animatorController = m_animator.
 
         //Debug.Log(m_animator);
@@ -23,7 +25,7 @@ public class EnemyAnimationContoller : MonoBehaviour
 
     private void OnChangeState(ChasingEnemyController.EnemyStates enemyState)
     {
-        Debug.Log(enemyState);
+        //Debug.Log(enemyState);
         switch (enemyState)
         {
             case ChasingEnemyController.EnemyStates.ATTACK:
@@ -42,13 +44,13 @@ public class EnemyAnimationContoller : MonoBehaviour
     }
     private void OnEnable()
     {
-        ChasingEnemyController.OnChangeState += OnChangeState;
+        chasingEnemyController.OnChangeState += OnChangeState;
     }
 
     private void OnDisable()
     {
 
-        ChasingEnemyController.OnChangeState -= OnChangeState;
+        chasingEnemyController.OnChangeState -= OnChangeState;
     }
 
 

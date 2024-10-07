@@ -13,7 +13,7 @@ public class ChasingEnemyController : MonoBehaviour
     [SerializeField] private float m_angleOfViewBothSides = 0.0f;
 
     [SerializeField] private float m_maxChasingDistance = 0.0f;
-    [SerializeField] private float m_damageDealingDistance = 2.0f;
+    [SerializeField] private float m_damageDealingDistance = 3.0f;
     [SerializeField] private NavMeshAgent agent;
     private Vector3 patrolPosition;
     private Vector3 previousPosition;
@@ -42,7 +42,7 @@ public class ChasingEnemyController : MonoBehaviour
         DEATH
     }
     public delegate void EnemyStateMachine(EnemyStates state);
-    public static event EnemyStateMachine OnChangeState;
+    public event EnemyStateMachine OnChangeState;
 
     //
     private void Awake()
@@ -54,6 +54,7 @@ public class ChasingEnemyController : MonoBehaviour
         if (m_fieldOfHearing == 0.0f) m_fieldOfView = 5f;
         if (m_angleOfViewBothSides == 0.0f) m_fieldOfView = 45f;
         if (m_maxChasingDistance == 0.0f || m_maxChasingDistance < m_fieldOfView) m_maxChasingDistance = m_fieldOfView * 1.5f;
+        if (m_damageDealingDistance == 0) m_damageDealingDistance = 3.0f;
 
         if (m_sphereCollider == null)
             throw new System.NullReferenceException("The f* sphere collider is missing a reference.");
@@ -79,7 +80,7 @@ public class ChasingEnemyController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(currentChasinState);
+        //Debug.Log(currentChasinState);
         States(currentChasinState);
         if (!target) return;
         FieldOfViewVectorVisualizer(); //Comment this on final realease
@@ -87,10 +88,13 @@ public class ChasingEnemyController : MonoBehaviour
         FieldOfView();
         Chase();
 
-        //
-
+        // Checking if the enemy return to the patrol position
         if ((patrolPosition - transform.position).magnitude < 1 && !m_chase) //Good enough
+        {
             OnChangeState(EnemyStates.IDLE);
+            currentChasinState = ChasingStates.IDLE;
+        }
+            
 
         //currentState
 
@@ -125,7 +129,6 @@ public class ChasingEnemyController : MonoBehaviour
             //Debug.DrawLine(transform.position, target.position, Color.red);
             if ((target.position - transform.position).magnitude < m_maxChasingDistance)
             {
-
                 //currentChasinState = ChasingStates.CHASE;
                 //agent.destination = target.position;
                 DealDamage();
@@ -149,13 +152,12 @@ public class ChasingEnemyController : MonoBehaviour
     }
     private void DealDamage()
     {
-        
-        if ((target.position - transform.position).magnitude < m_damageDealingDistance && isFacingThePlayer())
+
+        if ((target.position - transform.position).magnitude <= m_damageDealingDistance && isFacingThePlayer())
         {
             // We make the enemy stop to attack
             currentChasinState = ChasingStates.ATTACK;
             m_playerState.DealDamage();
-
 
             if (m_attackCooldownProgress >= ATTACK_COOLDOWN_TIME)
             {
@@ -167,10 +169,10 @@ public class ChasingEnemyController : MonoBehaviour
         }
         else
         {
+            m_attackCooldownProgress = ATTACK_COOLDOWN_TIME;
             OnChangeState(EnemyStates.WALK);
             currentChasinState = ChasingStates.CHASE;
         }
-        //.Health -= (int) 5.0f * Time.deltaTime;
     }
     private bool isFacingThePlayer()
     {
@@ -203,7 +205,7 @@ public class ChasingEnemyController : MonoBehaviour
 
     private void FieldOfHearing()
     {
-        if ((target.position - transform.position).magnitude < m_fieldOfHearing)
+        if ((target.position - transform.position).magnitude < m_fieldOfHearing && currentChasinState == ChasingStates.IDLE)
         {
             Debug.DrawLine(transform.position, target.position, Color.green);
             //agent.destination = target.position;

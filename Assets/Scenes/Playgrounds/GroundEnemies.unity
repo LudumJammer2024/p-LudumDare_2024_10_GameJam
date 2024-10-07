@@ -262,7 +262,7 @@ PrefabInstance:
     - target: {fileID: 66466452240897891, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1609372585179512889, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
@@ -382,11 +382,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GroundBug
-      objectReference: {fileID: 0}
-    - target: {fileID: 66466452240897891, guid: a7a4abe902661405b8c2c8160b98f5cb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1609372585179512889, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
@@ -703,7 +698,7 @@ PrefabInstance:
     - target: {fileID: 66466452240897891, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1609372585179512889, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
@@ -1138,7 +1133,7 @@ PrefabInstance:
     - target: {fileID: 66466452240897891, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1609372585179512889, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
@@ -1430,7 +1425,7 @@ PrefabInstance:
     - target: {fileID: 66466452240897891, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1609372585179512889, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
@@ -1716,7 +1711,7 @@ PrefabInstance:
     - target: {fileID: 66466452240897891, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1609372585179512889, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
@@ -1794,7 +1789,7 @@ PrefabInstance:
     - target: {fileID: 66466452240897891, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1609372585179512889, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
@@ -1872,7 +1867,7 @@ PrefabInstance:
     - target: {fileID: 66466452240897891, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1609372585179512889, guid: a7a4abe902661405b8c2c8160b98f5cb,
         type: 3}
@@ -2216,14 +2211,13 @@ GameObject:
   - component: {fileID: 3867330525593456271}
   - component: {fileID: 7885055110811494956}
   - component: {fileID: 6373352749433462743}
-  - component: {fileID: 7885055110811494957}
   m_Layer: 0
   m_Name: GroundBug (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &4803165105703432172
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2475,24 +2469,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7885055110811494957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4795383745413392266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e249267e13f44c5581cce104231dff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_animatorController: {fileID: 0}
-  attack: {fileID: 6720303635017113406, guid: e2183643555796a48b9d13780ff339a6, type: 3}
-  idle: {fileID: -3100369314251171874, guid: e2183643555796a48b9d13780ff339a6, type: 3}
-  death: {fileID: 4348485665485846014, guid: e2183643555796a48b9d13780ff339a6, type: 3}
-  walk: {fileID: 2667949614841947897, guid: e2183643555796a48b9d13780ff339a6, type: 3}
-  m_animator: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

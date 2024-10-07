@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 8632000127273631334}
   - component: {fileID: 3390600455444536005}
   - component: {fileID: 1878617253142671166}
+  - component: {fileID: 9204917955460672775}
   m_Layer: 0
   m_Name: GroundBug
   m_TagString: Untagged
@@ -316,8 +317,9 @@ MonoBehaviour:
   m_fieldOfHearing: 5
   m_angleOfViewBothSides: 45
   m_maxChasingDistance: 0
-  m_damageDealingDistance: 5
+  m_damageDealingDistance: 0
   agent: {fileID: 0}
+  currentChasinState: 0
 --- !u!143 &8632000127273631334
 CharacterController:
   m_ObjectHideFlags: 0
@@ -389,6 +391,24 @@ MonoBehaviour:
   killVolume: 1.2
   minDistance: 1
   maxDistance: 20
+--- !u!114 &9204917955460672775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66466452240897891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e249267e13f44c5581cce104231dff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_animatorController: {fileID: 0}
+  attack: {fileID: 6720303635017113406, guid: e2183643555796a48b9d13780ff339a6, type: 3}
+  idle: {fileID: -3100369314251171874, guid: e2183643555796a48b9d13780ff339a6, type: 3}
+  death: {fileID: 4348485665485846014, guid: e2183643555796a48b9d13780ff339a6, type: 3}
+  walk: {fileID: 2667949614841947897, guid: e2183643555796a48b9d13780ff339a6, type: 3}
+  m_animator: {fileID: 0}
 --- !u!1 &4623053651825554470
 GameObject:
   m_ObjectHideFlags: 0
