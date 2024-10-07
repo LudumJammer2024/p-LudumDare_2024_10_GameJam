@@ -7,6 +7,7 @@ public class FlyingEnemyController : MonoBehaviour
 {
     public UnityEvent OnAllEnemiesDead;
     public UnityEvent OnNodeDying;
+    [SerializeField] public PlayerState m_playerState;
     [Header("Enemy variables")]
     [Tooltip("Damage per second per enemy")]
     [SerializeField] private float damagePerEnemy = 0.5f;
@@ -28,6 +29,9 @@ public class FlyingEnemyController : MonoBehaviour
 
     private void Awake()
     {
+        if (!m_playerState)
+            throw new System.NullReferenceException("Assign the f* PlayerState");
+
         currentHealth = maxHealth;
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;
@@ -82,6 +86,7 @@ public class FlyingEnemyController : MonoBehaviour
             {
                 currentHealth = 0f;
                 OnNodeDying.Invoke(); // Game over state!
+                m_playerState.KillPlayer();
                 isDisabled = true;
             }
         }

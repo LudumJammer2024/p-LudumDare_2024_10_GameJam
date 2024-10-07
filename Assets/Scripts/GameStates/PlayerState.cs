@@ -13,8 +13,8 @@ public class PlayerState : ScriptableObject
     [SerializeField] private float m_recoveryContribution = 10.0f;
     [SerializeField] private bool m_isAlive = true;
     [SerializeField] private float m_recoveryCooldownProgress = 0;
-    public float Health { get => m_health;}
-    public float MaxHealth { get => MAX_HEALTH;}
+    public float Health { get => m_health; }
+    public float MaxHealth { get => MAX_HEALTH; }
 
     // Events
 
@@ -53,13 +53,17 @@ public class PlayerState : ScriptableObject
             m_lastHealthRecord = m_health;
             m_health += m_recoveryContribution * Time.deltaTime;
 
-            if(m_health > MAX_HEALTH)
+            if (m_health > MAX_HEALTH)
             {
                 m_health = MAX_HEALTH;
                 m_lastHealthRecord = m_health;
             }
         }
+    }
 
+    public void KillPlayer()
+    {
+        if (OnPlayerDeath != null) OnPlayerDeath?.Invoke();
     }
 
 }
