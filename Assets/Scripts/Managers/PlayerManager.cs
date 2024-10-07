@@ -84,10 +84,12 @@ public class PlayerManager : Singleton<PlayerManager>
     private void OnEnable()
     {
         GameState.OnGameStateChange += OnGameStateChange;
+        PlayerState.OnPlayerDeath += OnPlayerDeath;
     }
     private void OnDisable()
     {
         GameState.OnGameStateChange -= OnGameStateChange;
+        PlayerState.OnPlayerDeath -= OnPlayerDeath;
     }
     private void Start()
     {
@@ -116,6 +118,11 @@ public class PlayerManager : Singleton<PlayerManager>
         {
             EquipGun();
         }
+    }
+
+    private void OnPlayerDeath()
+    {
+        isAlive = false;
     }
     public void EquipGun() //This is called using the OnGameStateChange
     {

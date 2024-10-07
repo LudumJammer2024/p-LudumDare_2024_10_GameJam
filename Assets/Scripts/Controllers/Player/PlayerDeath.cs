@@ -1,11 +1,17 @@
 using UnityEngine;
 
+[RequireComponent(typeof(InputManager))]
 public class PlayerDeath : MonoBehaviour
 {
     [Tooltip("Array containing death sounds")]
     [SerializeField] private AudioClip[] deathSounds;
+    private InputManager input;
     private bool isDead = false;
     private bool hasKilledPlayer = false;
+    void Awake()
+    {
+        input = GetComponent<InputManager>();
+    }
 
     void Update()
     {
@@ -15,6 +21,14 @@ public class PlayerDeath : MonoBehaviour
         {
             OnPlayerDeath();
         }
+
+        if (hasKilledPlayer && input.IsPausing()) {
+            if (SceneManagerSingleton.Instance != null)
+            {
+                input.PauseInput(false);
+                SceneManagerSingleton.Instance.ReloadScene();
+            }
+        }
     }
 
     public void KillPlayer()
@@ -22,7 +36,8 @@ public class PlayerDeath : MonoBehaviour
         isDead = true;
     }
 
-    private void OnPlayerDeath() {
+    private void OnPlayerDeath()
+    {
         hasKilledPlayer = true;
         if (PlayerManager.Instance != null) PlayerManager.Instance.isAlive = false;
 
